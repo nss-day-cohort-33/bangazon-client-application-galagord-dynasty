@@ -11,7 +11,7 @@ const NavBar = props => {
             <div style={{fontSize: "2em", marginLeft: "1em"}}><strong>Bangazon</strong></div>
             <ul className="nav nav-pills nav-fill">
                 <li className="nav-item">
-                    <Link className="nav-link" to="/">INSERT LINK HERE</Link>
+                    <Link className="nav-link" to="/categorylist">Category List</Link>
                 </li>
                 <li className="nav-item">
                     <Link className="nav-link" to="/">INSERT LINK HERE</Link>

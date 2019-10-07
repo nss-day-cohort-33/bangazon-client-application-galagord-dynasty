@@ -3,6 +3,7 @@ import React from "react"
 import { withRouter } from "react-router-dom"
 import Register from "./auth/Register"
 import Login from "./auth/Login"
+import CategoryList from "./category/CategoryList"
 
 
 const ApplicationViews = () => {
@@ -21,6 +22,16 @@ const ApplicationViews = () => {
                 }}
             />
 
+            <Route
+                path="/login" render={props => {
+                    return <Login {...props} />
+                }}
+            />
+            <Route
+                path="/categorylist" render={props => {
+                    return <CategoryList {...props} />
+                }}
+            />
             <Route
                 path="/login" render={props => {
                     return <Login {...props} />
