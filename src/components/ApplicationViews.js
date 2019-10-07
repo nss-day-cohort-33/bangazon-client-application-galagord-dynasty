@@ -1,4 +1,4 @@
-// import { Route } from "react-router-dom"
+import { Route } from "react-router-dom"
 import React from "react"
 import { withRouter } from "react-router-dom"
 // import Register from "./auth/Register"
@@ -9,6 +9,12 @@ import { withRouter } from "react-router-dom"
 const ApplicationViews = () => {
     return (
         <React.Fragment>
+
+            {/* <Route
+                exact path="/" render={props => {
+                    return <ParkExplorer {...props} />
+                }}
+            /> */}
 
             {/* <Route
                 path="/register" render={props => {

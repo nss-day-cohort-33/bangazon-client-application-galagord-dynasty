@@ -9,7 +9,7 @@ const BangazonApp = () => {
             {/* <Route render={props => (
                 <NavBar {...props} />
             )} /> */}
-            {/* <ApplicationViews /> */}
+            <ApplicationViews />
         </React.Fragment>
     )
 }
