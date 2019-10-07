@@ -1,9 +1,8 @@
 import { Route } from "react-router-dom"
 import React from "react"
 import { withRouter } from "react-router-dom"
-// import Register from "./auth/Register"
-// import Login from "./auth/Login"
-
+import Register from "./auth/Register"
+import Login from "./auth/Login"
 
 
 const ApplicationViews = () => {
@@ -12,11 +11,11 @@ const ApplicationViews = () => {
 
             {/* <Route
                 exact path="/" render={props => {
-                    return <ParkExplorer {...props} />
+                    return <HOME COMPONENT HERE />
                 }}
             /> */}
 
-            {/* <Route
+            <Route
                 path="/register" render={props => {
                     return <Register {...props} />
                 }}
@@ -26,7 +25,7 @@ const ApplicationViews = () => {
                 path="/login" render={props => {
                     return <Login {...props} />
                 }}
-            /> */}
+            />
 
         </React.Fragment>
     )
