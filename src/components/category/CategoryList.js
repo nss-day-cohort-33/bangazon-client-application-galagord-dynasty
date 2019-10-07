@@ -5,25 +5,38 @@ const CategoryList = props => {
     const [categoryList, setCategoryList] = useState([])
     const [currentCategory, setCurrentCategory] = useState({})
 
+    const getCategories = () => {
+        // Fetch the data from localhost:8000/categories
+        fetch("http://localhost:8000/categories", {
+            "method": "GET",
+            "headers": {
+                "Accept": "application/json",
+                
+            }
+        })
+            // Convert to JSON
+            .then(response => response.json())
+
+            // Store categories in state variable
+            .then((allCategoryItems) => {
+                setCategoryList(allCategoryItems)
+            })
+    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    useEffect(() => {
+        getCategories()
+    }, [])
 
     return (
         <>
-        <h1>This is the Category List</h1>
+        {
+            categoryList.map((item) => {
+            return <div>
+                    {item.name} 
+                    </div>
+                    })
+        }
             
         </>
     )
