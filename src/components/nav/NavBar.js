@@ -16,6 +16,9 @@ const NavBar = props => {
                 <li className="nav-item">
                     <Link className="nav-link" to="/">INSERT LINK HERE</Link>
                 </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/sell_product">Sell Product</Link>
+                </li>
                 {
                     isAuthenticated() ?
                         <li className="nav-item">
