@@ -76,6 +76,7 @@ const Register = props => {
                     <input ref={address} type="text"
                         name="address"
                         className="form-control"
+                        placeholder="Address"
                         required />
                 </fieldset>
                 <fieldset>
@@ -83,6 +84,7 @@ const Register = props => {
                     <input ref={phoneNumber} type="number"
                         name="phoneNumber"
                         className="form-control"
+                        placeholder="###-###-####"
                         required />
                 </fieldset>
                 <fieldset>
