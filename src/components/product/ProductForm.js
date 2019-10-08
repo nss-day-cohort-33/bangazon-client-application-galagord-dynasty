@@ -81,7 +81,7 @@ const ProductForm = props => {
     window.addEventListener("keyup", handler);
 
     return () => window.removeEventListener("keyup", handler);
-  }, [modalIsOpen, toggleDialog]);
+  }, []);
 
   // Create HTML representation with JSX
   return (
