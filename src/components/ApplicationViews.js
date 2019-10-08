@@ -30,7 +30,7 @@ const ApplicationViews = () => {
                 path="/products" render={props => {
                     return (
                         <>
-                            <h1>PRODUCTS</h1>
+                            <h2>Products</h2>
                             <ProductList {...props}/>
                         </>
                     )
