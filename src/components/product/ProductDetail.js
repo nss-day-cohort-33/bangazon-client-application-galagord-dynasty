@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react"
 
 const ProductDetail = props => {
-    const [products, setProducts] = useState([])
+    const [product, setProducts] = useState([])
 
-    const productDetailId = this.props.match.params.productId
+
 
     const getProduct = (productDetailId) => {
         fetch(`http://localhost:8000/products/${productDetailId}`, {
@@ -27,15 +27,15 @@ const ProductDetail = props => {
         })
     }
 
-    useEffect(getProduct(productDetailId), [])
-    console.log(products)
+    useEffect(() => {getProduct(props.productDetailId)}, [])
+    console.log(props.productDetailId)
     return(
         <>
             <main className='productDetail'>
-                <h1>{products.name}</h1>
-                <h3>Price: {products.price}</h3>
-                <h4>Quantity Available: {products.quantity}</h4>
-                <p>Description: {products.description}</p>
+                <h1>{product.name}</h1>
+                <h3>Price: {product.price}</h3>
+                <h4>Quantity Available: {product.quantity}</h4>
+                <p>Description: {product.description}</p>
                 <button>Add To Order</button>
             </main>
         </>

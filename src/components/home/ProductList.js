@@ -1,4 +1,8 @@
-import React, { useState, useEffect, useRef } from "react"
+//Author: Misty M. DeRamus
+//Purpose: Allow a user to get all the Bangazon products from the database.
+//Methods: GET
+
+import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
 import "./ProductList.css"
 
@@ -30,10 +34,10 @@ const ProductList = props => {
       <main className="products">
       <ol>
       {products.map(product => {
-            return<li><Link
+            return<Link
             to={`/productDetail/${product.id
             }`}
-          >{product.name}</Link></li>
+          ><li>{product.name}</li></Link>
           })}
         </ol>
       </main>
