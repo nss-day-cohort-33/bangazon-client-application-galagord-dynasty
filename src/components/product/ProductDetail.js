@@ -26,7 +26,7 @@ const ProductDetail = props => {
     }
 
     const getCurrentOrder = (props) => {
-        fetch(`http://localhost:8000/orders?customer=${localStorage.getItem("customer_id")}&payment_id=null`,{
+        return fetch(`http://localhost:8000/orders?customer=${localStorage.getItem("customer_id")}&payment=null`,{
             "method": "GET",
             "headers": {
                 "Accept": "application/json",
@@ -35,8 +35,8 @@ const ProductDetail = props => {
         })
             .then(response => response.json())
             .then((data) => {
-                setOrder(data)
-                console.log("data", data)
+                setOrder(data[0])
+                console.log("Here is the data", data[0])
             })
     }
 
@@ -54,15 +54,15 @@ const ProductDetail = props => {
 
     }
 
-    const addOrderProduct = (props) => {
+    const addOrderProduct = (product) => {
         return fetch("http://localhost:8000/orderproducts", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
-                "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+                // "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
               },
-              body: JSON.stringify({"customer_id": `${localStorage.getItem(`customer_id`)}`})
+              body: JSON.stringify(product)
             }).then(res => res.json());
     }
 
@@ -71,9 +71,10 @@ const ProductDetail = props => {
         if (isAuthenticated()) {
             if (order !== null){
                 console.log("order is open")
-                console.log("order id", order)
+                console.log("This is the order id", order.id)
                 console.log("product id", product.id)
-                addOrderProduct({"order": `${order.id}`, "product": `${product.id}`, "quantity": 1})
+                addOrderProduct({"order_id": order.id, "product_id": product.id, "quantity": 1})
+                
             }
             else{
                 console.log("no order")
@@ -89,6 +90,7 @@ const ProductDetail = props => {
     useEffect(() => {setProductAndOrder(props.productDetailId)}, [])
 
     return(
+        
         <>
             <main className='productDetail'>
                 <h1>{product.name}</h1>
