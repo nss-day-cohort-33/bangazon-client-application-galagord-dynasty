@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
+import CategoryDetail from "./CategoryDetail"
 
 const CategoryList = props => {
   const [categoryList, setCategoryList] = useState([]);
@@ -29,17 +30,19 @@ const CategoryList = props => {
 
   return (
     <>
+    {/* Maps through categories, if more than one product in category, it shows the category */}
       {categoryList.filter(item => item.products.map(item => {
               return (
-                <div>
-                  {item.name}
-
-                </div>
+                <div>{item.name}</div>
               )
             }).length  >= 1 ).map(item => {
         return (
           <div>
-            <h3>{item.name} ({item.products.map(item => {
+                           {/* Maps through products and get the number of products in each category */}
+            <h3><Link
+            to={`/categoryDetail/${item.id
+            }`}
+          >{item.name}</Link> ({item.products.map(item => {
               return (
                 <div>
                   {item.name}
@@ -47,6 +50,7 @@ const CategoryList = props => {
                 </div>
               )
             }).length})</h3>
+            {/* Only shows the first three products in each category */}
             {item.products.slice(0, 3).map(item => {
               let itemId = +item.url.split("s/")[1]
               return (
