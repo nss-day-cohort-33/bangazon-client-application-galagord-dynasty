@@ -11,13 +11,19 @@ const NavBar = props => {
             <div style={{fontSize: "2em", marginLeft: "1em"}}><strong>Welcome To Bangazon</strong></div>
             <ul className="nav nav-pills nav-fill">
                 <li className="nav-item">
-                    <Link className="nav-link" to="/categorylist">Category List</Link>
+                    <Link className="nav-link" to="/">Home</Link>
                 </li>
                 <li className="nav-item">
+                    <Link className="nav-link" to="/categorylist">Category List</Link>
+                </li>
+                <li>
                     <Link className="nav-link" to="/">Profile</Link>
                 </li>
                 <li className="nav-item">
                     <Link className="nav-link" to="/sell_product">Sell Product</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/MyCart">My Cart</Link>
                 </li>
                 {
                     isAuthenticated() ?

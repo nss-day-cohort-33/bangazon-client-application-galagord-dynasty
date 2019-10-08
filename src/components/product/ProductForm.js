@@ -155,6 +155,7 @@ const ProductForm = props => {
               ref={price}
               type="number"
               name="price"
+              step=".01"
               className="form-control"
               placeholder="Product Price"
               required

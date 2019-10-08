@@ -3,6 +3,7 @@ import React from "react"
 import { withRouter } from "react-router-dom"
 import Register from "./auth/Register"
 import Login from "./auth/Login"
+import ProductDetail from "./product/ProductDetail"
 import ProductForm from "./product/ProductForm"
 import CategoryList from "./category/CategoryList"
 import ProductList from "./home/ProductList"
@@ -37,6 +38,17 @@ const ApplicationViews = () => {
             <Route
                 path="/login" render={props => {
                     return <Login {...props} />
+                }}
+            />
+            <Route
+                path="/productDetail/:productDetailId(\d+)" render={props => {
+                    const productId = +props.match.params.productDetailId
+                    return <ProductDetail {...props} productDetailId={productId} />
+                }}
+            />
+            <Route
+                path="/MyCart" render={props => {
+                    return <ProductDetail {...props} />
                 }}
             />
             <Route

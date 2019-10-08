@@ -2,9 +2,10 @@
 //Purpose: Allow a user to get all the Bangazon products from the database.
 //Methods: GET
 
-import React, { useState, useEffect, useRef } from "react"
-// import ProductList from "./ProductList"
+import React, { useState, useEffect } from "react"
+import { Link } from "react-router-dom";
 import "./ProductList.css"
+
 
 // a function to give you all your products. The products variable is the state and
 // use setProducts to change the state of products the variable
@@ -33,8 +34,10 @@ const ProductList = props => {
       <main className="products">
       <ol>
       {products.map(product => {
-            return<li><a href="url"
-            onClick={() => props.getProducts(product.id)}>{product.name}</a></li>
+            return<Link
+            to={`/productDetail/${product.id
+            }`}
+          ><li>{product.name}</li></Link>
           })}
         </ol>
       </main>

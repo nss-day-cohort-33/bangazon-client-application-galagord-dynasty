@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { Link } from "react-router-dom";
 
 const CategoryList = props => {
   const [categoryList, setCategoryList] = useState([]);
@@ -21,12 +22,10 @@ const CategoryList = props => {
         setCategoryList(allCategoryItems);
       });
   };
-  
 
-  useEffect(() => {
-    getCategories();
-    
-  }, []);
+
+  useEffect(() => {getCategories();}, []);
+  console.log(categoryList)
 
   return (
     <>
@@ -34,7 +33,7 @@ const CategoryList = props => {
               return (
                 <div>
                   {item.name}
-                  
+
                 </div>
               )
             }).length  >= 1 ).map(item => {
@@ -44,15 +43,19 @@ const CategoryList = props => {
               return (
                 <div>
                   {item.name}
-                  
+
                 </div>
               )
             }).length})</h3>
             {item.products.slice(0, 3).map(item => {
+              let itemId = +item.url.split("s/")[1]
               return (
                 <div>
-                  <a href="#">{item.name}</a>
-                  
+                  <Link
+            to={`/productDetail/${itemId
+            }`}
+          >{item.name}</Link>
+
                 </div>
               )
             })}
