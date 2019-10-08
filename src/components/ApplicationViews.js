@@ -9,11 +9,16 @@ const ApplicationViews = () => {
     return (
         <React.Fragment>
 
-            {/* {<Route
+            {<Route
                 exact path="/" render={props => {
-                    return <HOME COMPONENT HERE />
+                    return (
+                        <>
+                            <h2>Products</h2>
+                            <ProductList {...props}/>
+                        </>
+                    )
                 }}
-            /> } */}
+            /> }
 
             <Route
                 path="/register" render={props => {
@@ -26,7 +31,7 @@ const ApplicationViews = () => {
                     return <Login {...props} />
                 }}
             />
-            <Route
+            {/* <Route
                 path="/products" render={props => {
                     return (
                         <>
@@ -35,7 +40,7 @@ const ApplicationViews = () => {
                         </>
                     )
                 }}
-            />
+            /> */}
         </React.Fragment>
     )
 }
