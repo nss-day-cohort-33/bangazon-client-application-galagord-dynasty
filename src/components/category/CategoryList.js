@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { Link } from "react-router-dom";
 
 const CategoryList = props => {
   const [categoryList, setCategoryList] = useState([]);
@@ -47,9 +48,13 @@ const CategoryList = props => {
               )
             }).length})</h3>
             {item.products.slice(0, 3).map(item => {
+              let itemId = +item.url.split("s/")[1]
               return (
                 <div>
-                  <a href="#">{item.name}</a>
+                  <Link
+            to={`/productDetail/${itemId
+            }`}
+          >{item.name}</Link>
 
                 </div>
               )
