@@ -31,16 +31,6 @@ const ApplicationViews = () => {
                     return <Login {...props} />
                 }}
             />
-            {/* <Route
-                path="/products" render={props => {
-                    return (
-                        <>
-                            <h2>Products</h2>
-                            <ProductList {...props}/>
-                        </>
-                    )
-                }}
-            /> */}
         </React.Fragment>
     )
 }
