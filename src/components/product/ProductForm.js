@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-// import useModal from "../../hooks/ui/useModal";
+import useModal from "../../hooks/ui/useModal";
 
 const ProductForm = props => {
   const name = useRef();
@@ -11,7 +11,7 @@ const ProductForm = props => {
 
   // Create a state variable for itinerary items - useState()
   const [categoryList, setCategoryList] = useState([]);
-  //   const { toggleDialog, modalIsOpen } = useModal("#dialog--itinerary");
+  const { toggleDialog, modalIsOpen } = useModal("#category_alert");
 
   const handleCreate = e => {
     e.preventDefault();
@@ -23,10 +23,10 @@ const ProductForm = props => {
       price: price.current.value,
       location: location.current.value,
       category_type_id: category_id.current.value,
-      customer_id: 1
+      customer_id: localStorage.getItem("customer_id")
     };
     if (category_id.current.value === "") {
-      console.log("Select a Category")
+      toggleDialog(true);
     } else {
       createProduct(newProduct).then(() => {
         props.history.push({
@@ -50,7 +50,6 @@ const ProductForm = props => {
       //   Store itinerary items in state variable
       .then(allCategories => {
         setCategoryList(allCategories);
-        console.log(allCategories);
       });
   };
 
@@ -59,8 +58,8 @@ const ProductForm = props => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json"
-        // "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+        Accept: "application/json",
+        Authorization: `Token ${localStorage.getItem("bangazon_token")}`
       },
       body: JSON.stringify(newProduct)
     }).then(res => res.json());
@@ -70,26 +69,45 @@ const ProductForm = props => {
   useEffect(() => {
     getCategories();
 
-    // const handler = e => {
-    //   if (e.keyCode === 27) {
-    //     console.log(`MyItinerary useEffect() modalIsOpen = ${modalIsOpen}`);
-    //     if (modalIsOpen) {
-    //       toggleDialog(false);
-    //     }
-    //   }
-    // };
+    const handler = e => {
+      if (e.keyCode === 27) {
+        console.log(`MyItinerary useEffect() modalIsOpen = ${modalIsOpen}`);
+        if (modalIsOpen) {
+          toggleDialog(false);
+        }
+      }
+    };
 
-    // window.addEventListener("keyup", handler);
+    window.addEventListener("keyup", handler);
 
-    // return () => window.removeEventListener("keyup", handler);
-  }, []);
+    return () => window.removeEventListener("keyup", handler);
+  }, [modalIsOpen, toggleDialog]);
 
   // Create HTML representation with JSX
   return (
     <>
+      {/* Dialog Box */}
+      <dialog id="category_alert" className="category_alert">
+        <br />
+        <div style={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
+        <p>Please Select a Category for the Product.</p>
+        <button onClick={() => toggleDialog(false)}>Ok</button>
+        </div>
+        <button
+          style={{
+            position: "absolute",
+            top: "0.25em",
+            right: "0.25em"
+          }}
+          id="closeBtn"
+          onClick={() => toggleDialog(false)}
+        >
+          X
+        </button>
+      </dialog>
+      {/* Add Product Form */}
       <main style={{ textAlign: "center" }}>
         <form className="form--login" onSubmit={handleCreate}>
-          {/* onSubmit={#} */}
           <h1 className="h3 mb-3 font-weight-normal">Create a New Product</h1>
           <fieldset>
             <label htmlFor="name"> Product Name </label>
