@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from "react"
+import { getDefaultSettings } from "http2"
+
+// Author: Krystal Gates
+// Purpose: Show product detail
 
 const ProductDetail = props => {
     const [product, setProducts] = useState([])
@@ -28,7 +32,7 @@ const ProductDetail = props => {
     }
 
     useEffect(() => {getProduct(props.productDetailId)}, [])
-  
+
     return(
         <>
             <main className='productDetail'>
