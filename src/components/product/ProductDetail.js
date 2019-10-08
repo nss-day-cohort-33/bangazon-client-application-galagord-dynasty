@@ -3,8 +3,10 @@ import React, { useState, useEffect } from "react"
 const ProductDetail = props => {
     const [products, setProducts] = useState([])
 
-    const getProduct = (props) => {
-        fetch(`http://localhost:8000/products/1`, {
+    const productDetailId = this.props.match.params.productId
+
+    const getProduct = (productDetailId) => {
+        fetch(`http://localhost:8000/products/${productDetailId}`, {
             "method": "GET",
             "headers": {
                 "Accept": "application/json",
@@ -25,7 +27,7 @@ const ProductDetail = props => {
         })
     }
 
-    useEffect(getProduct, [])
+    useEffect(getProduct(productDetailId), [])
     console.log(products)
     return(
         <>
