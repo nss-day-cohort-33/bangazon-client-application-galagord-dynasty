@@ -48,10 +48,13 @@ useEffect(() => {getCategories();}, []);
             return(
                     
                 <div>
+                   <h3>{item.name}</h3>
+                   <br></br>
                     {
                         item.products.map(item => {
                             return (
                                 <div>
+                                    
                                     <p>Name: {item.name}</p>
                                     
                                     <p>Quantity: {item.quantity}</p>
