@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"
-import Link from react-router
-// import ProductList from "./ProductList"
+import { Link } from "react-router-dom";
 import "./ProductList.css"
+
 
 // a function to give you all your products. The products variable is the state and
 // use setProducts to change the state of products the variable
@@ -31,8 +31,7 @@ const ProductList = props => {
       <ol>
       {products.map(product => {
             return<li><Link
-            to={`/productDetail/${
-              this.props.producst.id
+            to={`/productDetail/${product.id
             }`}
           >{product.name}</Link></li>
           })}
