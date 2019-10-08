@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import { getDefaultSettings } from "http2"
 
 // Author: Krystal Gates
 // Purpose: Show product detail
