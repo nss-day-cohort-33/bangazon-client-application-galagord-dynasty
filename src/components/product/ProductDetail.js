@@ -28,7 +28,7 @@ const ProductDetail = props => {
     }
 
     useEffect(() => {getProduct(props.productDetailId)}, [])
-    console.log(props.productDetailId)
+  
     return(
         <>
             <main className='productDetail'>

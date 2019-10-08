@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom"
 import Register from "./auth/Register"
 import Login from "./auth/Login"
 import ProductDetail from "./product/ProductDetail"
+import CategoryList from "./category/CategoryList"
 import ProductList from "./home/ProductList"
 
 const ApplicationViews = () => {
@@ -43,6 +44,17 @@ const ApplicationViews = () => {
                     return <ProductDetail {...props} />
                 }}
             />
+            <Route
+                path="/categorylist" render={props => {
+                    return <CategoryList {...props} />
+                }}
+            />
+            <Route
+                path="/login" render={props => {
+                    return <Login {...props} />
+                }}
+            />
+
         </React.Fragment>
     )
 }
