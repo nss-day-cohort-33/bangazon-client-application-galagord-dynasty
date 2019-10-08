@@ -1,3 +1,7 @@
+//Author: Misty M. DeRamus
+//Purpose: Allow a user to get all the Bangazon products from the database.
+//Methods: GET
+
 import React, { useState, useEffect, useRef } from "react"
 // import ProductList from "./ProductList"
 import "./ProductList.css"
@@ -29,7 +33,8 @@ const ProductList = props => {
       <main className="products">
       <ol>
       {products.map(product => {
-            return<li><a href="url">{product.name}</a></li>
+            return<li><a href="url"
+            onClick={() => props.getProducts(product.id)}>{product.name}</a></li>
           })}
         </ol>
       </main>
