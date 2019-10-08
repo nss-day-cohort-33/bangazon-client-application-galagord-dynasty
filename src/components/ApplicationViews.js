@@ -5,16 +5,22 @@ import Register from "./auth/Register"
 import Login from "./auth/Login"
 import CategoryList from "./category/CategoryList"
 
+import ProductList from "./home/ProductList"
 
 const ApplicationViews = () => {
     return (
         <React.Fragment>
 
-            {/* <Route
+            {<Route
                 exact path="/" render={props => {
-                    return <HOME COMPONENT HERE />
+                    return (
+                        <>
+                            <h2>Products</h2>
+                            <ProductList {...props}/>
+                        </>
+                    )
                 }}
-            /> */}
+            /> }
 
             <Route
                 path="/register" render={props => {

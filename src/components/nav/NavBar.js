@@ -8,13 +8,16 @@ const NavBar = props => {
 
     return (
         <nav className="navbar navbar-light light-blue flex-md-nowrap p-0 shadow">
-            <div style={{fontSize: "2em", marginLeft: "1em"}}><strong>Bangazon</strong></div>
+            <div style={{fontSize: "2em", marginLeft: "1em"}}><strong>Welcome To Bangazon</strong></div>
             <ul className="nav nav-pills nav-fill">
                 <li className="nav-item">
                     <Link className="nav-link" to="/categorylist">Category List</Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link" to="/">INSERT LINK HERE</Link>
+                    <Link className="nav-link" to="/">Sell</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/">Profile</Link>
                 </li>
                 {
                     isAuthenticated() ?
