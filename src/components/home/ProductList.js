@@ -28,9 +28,9 @@ const ProductList = props => {
   return (
     <>
       <main className="products">
-        <ol>
-          {products.map(product => {
-            return<li>{product.name}</li>
+      <ol>
+      {products.map(product => {
+            return<li><a href="url">{product.name}</a></li>
           })}
         </ol>
       </main>
