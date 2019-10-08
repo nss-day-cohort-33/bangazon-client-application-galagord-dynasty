@@ -11,7 +11,7 @@ const ProductDetail = props => {
 
 
 
-    const getProduct = (productDetailId) => {
+    const setProductAndOrder = (productDetailId) => {
         fetch(`http://localhost:8000/products/${productDetailId}`, {
             "method": "GET",
             "headers": {
@@ -22,10 +22,10 @@ const ProductDetail = props => {
             .then((product) => {
                 setProducts(product)
             })
+            getCurrentOrder()
     }
 
     const getCurrentOrder = (props) => {
-        console.log("current order")
         fetch(`http://localhost:8000/orders?customer=${localStorage.getItem("customer_id")}&payment_id=null`,{
             "method": "GET",
             "headers": {
@@ -34,8 +34,9 @@ const ProductDetail = props => {
             }
         })
             .then(response => response.json())
-            .then((order) => {
-                setOrder(order)
+            .then((data) => {
+                setOrder(data)
+                console.log("data", data)
             })
     }
 
@@ -50,6 +51,7 @@ const ProductDetail = props => {
               },
               body: JSON.stringify({"customer_id": `${localStorage.getItem(`customer_id`)}`})
             }).then(res => res.json());
+
     }
 
     const addOrderProduct = (props) => {
@@ -67,14 +69,16 @@ const ProductDetail = props => {
     const addProductToOrder = (props) => {
         console.log("hello")
         if (isAuthenticated()) {
-            if (getCurrentOrder()){
+            if (order !== null){
                 console.log("order is open")
-                // .then(addOrderProduct())
+                console.log("order id", order)
+                console.log("product id", product.id)
+                addOrderProduct({"order": `${order.id}`, "product": `${product.id}`, "quantity": 1})
             }
             else{
                 console.log("no order")
-                makeNewOrder()
-                // addOrderProduct()
+                // makeNewOrder()
+                // .then(addOrderProduct())
             }
         }
         else{
@@ -82,7 +86,7 @@ const ProductDetail = props => {
         }
     }
 
-    useEffect(() => {getProduct(props.productDetailId)}, [])
+    useEffect(() => {setProductAndOrder(props.productDetailId)}, [])
 
     return(
         <>
