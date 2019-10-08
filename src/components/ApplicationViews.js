@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom"
 import Register from "./auth/Register"
 import Login from "./auth/Login"
 import ProductDetail from "./product/ProductDetail"
+import ProductForm from "./product/ProductForm"
 import CategoryList from "./category/CategoryList"
 import ProductList from "./home/ProductList"
 
@@ -21,6 +22,12 @@ const ApplicationViews = () => {
                     )
                 }}
             /> }
+
+            <Route
+                path="/sell_product" render={props => {
+                    return <ProductForm {...props} />
+                }}
+            />
 
             <Route
                 path="/register" render={props => {

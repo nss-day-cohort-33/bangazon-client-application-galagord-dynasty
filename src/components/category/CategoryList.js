@@ -24,6 +24,7 @@ const CategoryList = props => {
 
 
   useEffect(() => {getCategories();}, []);
+  console.log(categoryList)
 
   return (
     <>
