@@ -2,6 +2,9 @@ import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import CategoryDetail from "./CategoryDetail"
 
+// Author: Adam Knowles
+// Purpose: Show Categories that have more than one product, and show associated products to those categories. Category and product have a hyperlink that takes you to their respective detail pages. 
+
 const CategoryList = props => {
   const [categoryList, setCategoryList] = useState([]);
   const [productList, setProductList] = useState([]);

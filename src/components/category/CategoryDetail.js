@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react"
 
+// Author: Adam Knowles
+// Purpose: Show the category detail. This includes information(name, price, quantity) about each product the category contains.
+
 
 const CategoryDetail = props => {
     const [category, setCategory] = useState([])
@@ -39,6 +42,8 @@ const getCategories = () => {
   };
 useEffect(() => {getCategory(props.categoryDetailId)}, [])
 useEffect(() => {getCategories();}, []);
+
+    //If the category ID matches the categoryDetail ID, show all products and information associated with that category
 
 
     return(
