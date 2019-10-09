@@ -5,6 +5,7 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
 import "./ProductList.css"
+import { reverse } from "dns";
 
 
 // a function to give you all your products. The products variable is the state and
@@ -33,10 +34,10 @@ const ProductList = props => {
     <>
       <main className="products">
       <ol>
-      {products.map(product => {
-            return<Link
-            to={`/productDetail/${product.id
-            }`}
+      {products.slice(-20).map(product => {
+          return<Link
+          to={`/productDetail/${product.id
+          }`}
           ><li>{product.name}</li></Link>
           })}
         </ol>
