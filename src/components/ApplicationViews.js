@@ -67,7 +67,7 @@ const ApplicationViews = () => {
                 path="/profile" render={props => {
                     return (
                         <>
-                            <h3>Customer Profile</h3>
+                            <h2>Customer Profile</h2>
                             <CustomerProfile {...props}/>
                         </>
                     )
