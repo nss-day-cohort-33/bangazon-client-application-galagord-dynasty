@@ -10,7 +10,7 @@ const ProductDetail = props => {
     const { isAuthenticated } = useSimpleAuth()
 
 
-
+// set product and order to state
     const setProductAndOrder = (productDetailId) => {
         fetch(`http://localhost:8000/products/${productDetailId}`, {
             "method": "GET",
@@ -25,6 +25,7 @@ const ProductDetail = props => {
             getCurrentOrder()
     }
 
+// get open order for current customer
     const getCurrentOrder = (props) => {
         return fetch(`http://localhost:8000/orders?customer=${localStorage.getItem("customer_id")}&payment=null`,{
             "method": "GET",
@@ -40,6 +41,7 @@ const ProductDetail = props => {
             })
     }
 
+// make new order for customer
     const makeNewOrder = (props) => {
         console.log("make new order")
         return fetch("http://localhost:8000/orders", {
@@ -54,6 +56,7 @@ const ProductDetail = props => {
 
     }
 
+// create orderproduct join table
     const addOrderProduct = (product) => {
         return fetch("http://localhost:8000/orderproducts", {
               method: "POST",
@@ -66,25 +69,27 @@ const ProductDetail = props => {
             }).then(res => res.json());
     }
 
+// checks if user is authenticated
+// then checks if there is an open order
+//     if there is an open order it creates join table with open order then takes you to MyCart
+// if there is no open order then an order is created and a join table with the new order and product is created then takes you to MyCart
+
     const addProductToOrder = (props) => {
-        console.log("hello")
         if (isAuthenticated()) {
-            if (order !== null){
-                console.log("order is open")
-                console.log("This is the order id", order.id)
-                console.log("product id", product.id)
+            if (order !== undefined){
+                console.log("pruduct", product.id)
+                console.log("order", order)
                 addOrderProduct({"order_id": order.id, "product_id": product.id, "quantity": 1})
                 // .then(() => {
-                //     props.history.push({
-                //         pathname: "/MyCart",
-                //       });
+                //     props.history.push(
+                //         "/MyCart"
+                //       )
                 // })
-                
             }
             else{
                 console.log("no order")
-                // makeNewOrder()
-                // .then(addOrderProduct())
+                makeNewOrder()
+                .then(newOrder => {addOrderProduct({"order_id": newOrder.id, "product_id": product.id, "quantity": 1})})
             }
         }
         else{
@@ -95,7 +100,7 @@ const ProductDetail = props => {
     useEffect(() => {setProductAndOrder(props.productDetailId)}, [])
 
     return(
-        
+
         <>
             <main className='productDetail'>
                 <h1>{product.name}</h1>
