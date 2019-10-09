@@ -6,7 +6,7 @@ import useSimpleAuth from "../../hooks/ui/useSimpleAuth";
 
 const CurrentOrder = props => {
   const [order, setOrder] = useState([]);
-  // const { isAuthenticated } = useSimpleAuth()
+  const { isAuthenticated } = useSimpleAuth()
 
   const getCurrentOrder = props => {
     return fetch(`http://localhost:8000/orderproducts`, {
@@ -32,13 +32,18 @@ const CurrentOrder = props => {
   };
 
   useEffect(() => {
-    getCurrentOrder();
-  }, []);
+    if (isAuthenticated()){
+        getCurrentOrder();
+    }
+}, []);
 
   return (
     <>
       <main className="shoppingCart">
         <h1 style={{ margin: "1em 0 1em 1em" }}><strong>My Shopping Cart</strong></h1>
+        {
+            !isAuthenticated() ? <div class="alert alert-warning" role="alert" style={{ textAlign: "center" }}>You are not logged in. Please Login to add to your cart.</div> : null
+        }
         <div
           style={{
             display: "flex",

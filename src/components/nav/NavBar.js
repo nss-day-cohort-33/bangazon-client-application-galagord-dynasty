@@ -8,7 +8,9 @@ const NavBar = props => {
   const [order, setOrder] = useState([]);
 
   useEffect(() => {
-    getCurrentOrder();
+      if (isAuthenticated()){
+          getCurrentOrder();
+      }
   }, []);
 
   const getCurrentOrder = props => {

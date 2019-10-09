@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import useModal from "../../hooks/ui/useModal";
+import useSimpleAuth from "../../hooks/ui/useSimpleAuth";
+
 
 const ProductForm = props => {
   const name = useRef();
@@ -11,6 +13,7 @@ const ProductForm = props => {
 
   // Create a state variable for itinerary items - useState()
   const [categoryList, setCategoryList] = useState([]);
+  const { isAuthenticated } = useSimpleAuth()
   const { toggleDialog, modalIsOpen } = useModal("#category_alert");
 
   const handleCreate = e => {
@@ -67,7 +70,10 @@ const ProductForm = props => {
 
   //   Create useEffect()
   useEffect(() => {
-    getCategories();
+
+    if (isAuthenticated()){
+      getCategories();
+  }
 
     const handler = e => {
       if (e.keyCode === 27) {
@@ -107,6 +113,7 @@ const ProductForm = props => {
       </dialog>
       {/* Add Product Form */}
       <main style={{ textAlign: "center" }}>
+        { !isAuthenticated() ? <div class="alert alert-warning" role="alert">You are not logged in. Please Login to add to a Product.</div> :
         <form className="form--login" onSubmit={handleCreate}>
           <h1 className="h3 mb-3 font-weight-normal">Create a New Product</h1>
           <fieldset>
@@ -185,6 +192,7 @@ const ProductForm = props => {
             <button type="submit">Submit</button>
           </fieldset>
         </form>
+        }
       </main>
     </>
   );

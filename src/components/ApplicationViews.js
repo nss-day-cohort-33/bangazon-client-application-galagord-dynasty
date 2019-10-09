@@ -57,11 +57,6 @@ const ApplicationViews = () => {
                     return <CategoryList {...props} />
                 }}
             />
-            <Route
-                path="/login" render={props => {
-                    return <Login {...props} />
-                }}
-            />
 
         </React.Fragment>
     )

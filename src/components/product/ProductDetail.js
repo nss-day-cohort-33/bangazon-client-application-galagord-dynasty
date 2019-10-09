@@ -74,6 +74,11 @@ const ProductDetail = props => {
                 console.log("This is the order id", order.id)
                 console.log("product id", product.id)
                 addOrderProduct({"order_id": order.id, "product_id": product.id, "quantity": 1})
+                // .then(() => {
+                //     props.history.push({
+                //         pathname: "/MyCart",
+                //       });
+                // })
                 
             }
             else{
@@ -97,7 +102,7 @@ const ProductDetail = props => {
                 <h3>Price: {product.price}</h3>
                 <h4>Quantity Available: {product.quantity}</h4>
                 <p>Description: {product.description}</p>
-                <button onClick={addProductToOrder}>Add To Order</button>
+                {isAuthenticated() ? <button onClick={addProductToOrder}>Add To Order</button> : null}
             </main>
         </>
     )
