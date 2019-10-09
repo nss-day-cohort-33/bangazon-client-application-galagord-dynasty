@@ -17,7 +17,7 @@ const NavBar = props => {
                     <Link className="nav-link" to="/categorylist">Category List</Link>
                 </li>
                 <li>
-                    <Link className="nav-link" to="/">Profile</Link>
+                    <Link className="nav-link" to="/profile">Profile</Link>
                 </li>
                 <li className="nav-item">
                     <Link className="nav-link" to="/sell_product">Sell Product</Link>

@@ -7,6 +7,7 @@ import ProductDetail from "./product/ProductDetail"
 import ProductForm from "./product/ProductForm"
 import CategoryList from "./category/CategoryList"
 import ProductList from "./home/ProductList"
+import CustomerProfile from "./payment/CustomerProfile"
 
 const ApplicationViews = () => {
     return (
@@ -61,7 +62,16 @@ const ApplicationViews = () => {
                     return <Login {...props} />
                 }}
             />
-
+            {<Route
+                path="/profile" render={props => {
+                    return (
+                        <>
+                            <h3>Customer Profile</h3>
+                            <CustomerProfile {...props}/>
+                        </>
+                    )
+                }}
+            /> }
         </React.Fragment>
     )
 }
