@@ -9,6 +9,8 @@ import CategoryList from "./category/CategoryList"
 import ProductList from "./home/ProductList"
 import CustomerProfile from "./payment/CustomerProfile"
 import PaymentForm from "./payment/PaymentForm"
+import CurrentOrder from "./order/CurrentOrder"
+import CategoryDetail from "./category/CategoryDetail"
 
 const ApplicationViews = () => {
     return (
@@ -49,18 +51,19 @@ const ApplicationViews = () => {
                 }}
             />
             <Route
+                path="/categoryDetail/:categoryDetailId(\d+)" render={props => {
+                    const categoryId = +props.match.params.categoryDetailId
+                    return <CategoryDetail {...props} categoryDetailId={categoryId} />
+                }}
+            />
+            <Route
                 path="/MyCart" render={props => {
-                    return <ProductDetail {...props} />
+                    return <CurrentOrder {...props} />
                 }}
             />
             <Route
                 path="/categorylist" render={props => {
                     return <CategoryList {...props} />
-                }}
-            />
-            <Route
-                path="/login" render={props => {
-                    return <Login {...props} />
                 }}
             />
             {<Route
