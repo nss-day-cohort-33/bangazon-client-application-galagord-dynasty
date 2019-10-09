@@ -7,6 +7,7 @@ import ProductDetail from "./product/ProductDetail"
 import ProductForm from "./product/ProductForm"
 import CategoryList from "./category/CategoryList"
 import ProductList from "./home/ProductList"
+import CurrentOrder from "./order/CurrentOrder"
 import CategoryDetail from "./category/CategoryDetail"
 
 const ApplicationViews = () => {
@@ -55,17 +56,12 @@ const ApplicationViews = () => {
             />
             <Route
                 path="/MyCart" render={props => {
-                    return <ProductDetail {...props} />
+                    return <CurrentOrder {...props} />
                 }}
             />
             <Route
                 path="/categorylist" render={props => {
                     return <CategoryList {...props} />
-                }}
-            />
-            <Route
-                path="/login" render={props => {
-                    return <Login {...props} />
                 }}
             />
 
