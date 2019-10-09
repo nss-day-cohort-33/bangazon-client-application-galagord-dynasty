@@ -37,13 +37,11 @@ const ProductDetail = props => {
             .then(response => response.json())
             .then((data) => {
                 setOrder(data[0])
-                console.log("Here is the data", data[0])
             })
     }
 
 // make new order for customer
     const makeNewOrder = (props) => {
-        console.log("make new order")
         return fetch("http://localhost:8000/orders", {
               method: "POST",
               headers: {
@@ -74,22 +72,20 @@ const ProductDetail = props => {
 //     if there is an open order it creates join table with open order then takes you to MyCart
 // if there is no open order then an order is created and a join table with the new order and product is created then takes you to MyCart
 
-    const addProductToOrder = (props) => {
+    const addProductToOrder = () => {
         if (isAuthenticated()) {
             if (order !== undefined){
-                console.log("pruduct", product.id)
-                console.log("order", order)
                 addOrderProduct({"order_id": order.id, "product_id": product.id, "quantity": 1})
-                // .then(() => {
-                //     props.history.push(
-                //         "/MyCart"
-                //       )
-                // })
+                .then(() => {
+                    props.history.push("/MyCart")
+                })
             }
             else{
-                console.log("no order")
                 makeNewOrder()
                 .then(newOrder => {addOrderProduct({"order_id": newOrder.id, "product_id": product.id, "quantity": 1})})
+                .then(() => {
+                    props.history.push("/MyCart")
+                })
             }
         }
         else{
