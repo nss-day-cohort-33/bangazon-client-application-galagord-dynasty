@@ -38,7 +38,7 @@ const ProductList = props => {
           return<Link
           to={`/productDetail/${product.id
           }`}
-          ><li>{product.name}</li></Link>
+          ><li key={product.id}>{product.name}</li></Link>
           })}
         </ol>
       </main>

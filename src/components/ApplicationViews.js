@@ -8,6 +8,7 @@ import ProductForm from "./product/ProductForm"
 import CategoryList from "./category/CategoryList"
 import ProductList from "./home/ProductList"
 import CategoryDetail from "./category/CategoryDetail"
+import Cart from "./order/CurrentOrder"
 
 const ApplicationViews = () => {
     return (
@@ -54,8 +55,8 @@ const ApplicationViews = () => {
                 }}
             />
             <Route
-                path="/MyCart" render={props => {
-                    return <ProductDetail {...props} />
+                path="/my_cart" render={props => {
+                    return <Cart {...props} />
                 }}
             />
             <Route
