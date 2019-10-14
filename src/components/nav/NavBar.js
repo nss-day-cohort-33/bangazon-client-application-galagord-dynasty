@@ -83,17 +83,10 @@ const NavBar = props => {
         </li>
         {isAuthenticated() ? (
           <li className="nav-item">
-            <button
-              className="nav-link fakeLink"
-              onClick={() => {
-                logout();
-                props.history.push({
-                  pathname: "/"
-                });
-              }}
-            >
+            <Link className="nav-link-fakeLink"
+            onClick={() => localStorage.clear()} to="/">
               Logout
-            </button>
+            </Link>
           </li>
         ) : (
           <>
