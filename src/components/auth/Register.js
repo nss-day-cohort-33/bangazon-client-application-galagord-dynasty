@@ -28,12 +28,21 @@ const Register = props => {
             "password": password.current.value
         }
 
-        register(newUser).then(() => {
+        register(newUser)
+        console.log(newUser)
+        .then(newUser => localStorage.setItem("userId", newUser.id))
+        .then(() => {
             props.history.push({
                 pathname: "/"
             })
         })
     }
+
+        //     .then(() => {
+        //     props.history.push({
+        //         pathname: "/"
+        //     })
+        // })
 
     return (
         <main style={{ textAlign: "center" }}>
