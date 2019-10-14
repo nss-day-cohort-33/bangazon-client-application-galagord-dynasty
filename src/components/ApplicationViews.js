@@ -7,6 +7,8 @@ import ProductDetail from "./product/ProductDetail"
 import ProductForm from "./product/ProductForm"
 import CategoryList from "./category/CategoryList"
 import ProductList from "./home/ProductList"
+import CustomerProfile from "./payment/CustomerProfile"
+import PaymentForm from "./payment/PaymentForm"
 import CurrentOrder from "./order/CurrentOrder"
 import CategoryDetail from "./category/CategoryDetail"
 
@@ -64,7 +66,26 @@ const ApplicationViews = () => {
                     return <CategoryList {...props} />
                 }}
             />
-
+            {<Route
+                path="/profile" render={props => {
+                    return (
+                        <>
+                            <h2>Customer Profile</h2>
+                            <CustomerProfile {...props}/>
+                        </>
+                    )
+                }}
+            /> }
+            {<Route
+                path="/PaymentForm" render={props => {
+                    return (
+                        <>
+                            <h3>Payment Form</h3>
+                            <PaymentForm {...props}/>
+                        </>
+                    )
+                }}
+            /> }
         </React.Fragment>
     )
 }

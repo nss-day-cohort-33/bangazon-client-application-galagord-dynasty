@@ -7,11 +7,11 @@ const NavBar = props => {
   const { isAuthenticated, logout } = useSimpleAuth();
   const [order, setOrder] = useState([]);
 
-  useEffect(() => {
-      if (isAuthenticated()){
-          getCurrentOrder();
-      }
-  }, []);
+//   useEffect(() => {
+//       if (isAuthenticated()){
+//           getCurrentOrder();
+//       }
+//   }, []);
 
   const getCurrentOrder = props => {
     return fetch(`http://localhost:8000/orderproducts`, {
@@ -52,7 +52,7 @@ const NavBar = props => {
           </Link>
         </li>
         <li>
-          <Link className="nav-link" to="/">
+          <Link className="nav-link" to="/profile">
             Profile
           </Link>
         </li>
