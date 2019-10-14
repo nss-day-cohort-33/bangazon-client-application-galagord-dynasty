@@ -61,11 +61,15 @@ const NavBar = props => {
             Sell Product
           </Link>
         </li>
-        <li className="nav-item">
+        
+        { isAuthenticated() ? (<li className="nav-item">
           <Link className="nav-link" to="/myproducts">
             My Products
           </Link>
-        </li>
+        </li>) : null
+        
+      }
+       
         <li className="nav-item">
           <Link className="nav-link" to="/MyCart">
             <div style={{ display: "flex" }}>
