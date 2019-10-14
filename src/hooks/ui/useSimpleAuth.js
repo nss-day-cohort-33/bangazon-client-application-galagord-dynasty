@@ -20,6 +20,8 @@ const useSimpleAuth = () => {
             .then(res => {
                 if ("token" in res) {
                     localStorage.setItem( "bangazon_token", res.token )
+                if ("url" in res) {
+                    //I think I can grab the ID # from the end of the URL if I look in to how that can be extracted...
                     localStorage.setItem( "customer_id", parseInt(res.id))
                     setIsLoggedIn(true)
                 }
