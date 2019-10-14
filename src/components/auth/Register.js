@@ -28,40 +28,12 @@ const Register = props => {
             "password": password.current.value
         }
 
-        //I believe I now need to get all the user data and search for the user whose name matches the one just created by this component.
-        // fetch all, find the one that, set the localStorage to the ID of that object
-
-        register(newUser)
-                .then(() => getCustomers())
-                .then(r => r.find(each => each.userName === username))
-                .then(matchedUserInfo => localStorage.setItem("userId", matchedUserInfo.id))
-                .then(() => setUsers({userId: localStorage.getItem("userId")}))
-                .then(() => {
-                    props.history.push({
-                        pathname: "/"
-                    })
-                })
+        register(newUser).then(() => {
+            props.history.push({
+                pathname: "/"
+            })
+        })
     }
-
-    const UsersList = props => {
-        const [customers, setCustomers] = useState([])
-        //When evoked getProducts perform a fetch, server Django responds with
-        // a json string, convert it to an object then send the data to setProducts. The products
-        // state variable is now updated and the state of the component has been changed.
-      
-        const getCustomers = () => {
-          fetch(`http://localhost:8000/customers`, {
-            method: "GET",
-            headers: {
-              // gives you back the format you request data
-              Accept: "application/json",
-            }
-          })
-            .then(response => response.json())
-            .then(setUsers)
-        }
-      
-        useEffect(getUsers, [])
 
     return (
         <main style={{ textAlign: "center" }}>
