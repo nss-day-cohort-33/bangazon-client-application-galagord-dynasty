@@ -9,7 +9,8 @@ import CategoryList from "./category/CategoryList"
 import ProductList from "./home/ProductList"
 import CurrentOrder from "./order/CurrentOrder"
 import CategoryDetail from "./category/CategoryDetail"
-import Profile from "./payment/CustomerProfile"
+import CustomerProfile from "./payment/CustomerProfile"
+import PaymentForm from "./payment/PaymentForm"
 
 
 const ApplicationViews = () => {
@@ -73,7 +74,13 @@ const ApplicationViews = () => {
 
             <Route
                 path="/profile" render={props => {
-                    return <Profile {...props} />
+                    return <CustomerProfile {...props} />
+                }}
+            />
+
+            <Route
+                path="/paymentform" render={props => {
+                    return <PaymentForm {...props} />
                 }}
             />
 
