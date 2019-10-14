@@ -28,15 +28,21 @@ const Register = props => {
             "password": password.current.value
         }
 
+        //I believe I now need to get all the user data and search for the user whose name matches the one just created by this component.
+        // fetch all, find the one that, set the localStorage to the ID of that object
+
         register(newUser)
-        console.log(newUser)
-        .then(newUser => localStorage.setItem("userId", newUser.id))
-        .then(() => {
-            props.history.push({
-                pathname: "/"
-            })
-        })
+                .then(() => APImanager.all("users"))
+                .then(r => r.find(user => user.username === this.state.username))
+                .then(matchedUserInfo => localStorage.setItem("userId", matchedUserInfo.id))
+                .then(() => this.setState({userId: localStorage.getItem("userId")}))
+                .then(() => {
+                    props.history.push({
+                        pathname: "/"
+                    })
+                })
     }
+
 
         //     .then(() => {
         //     props.history.push({
