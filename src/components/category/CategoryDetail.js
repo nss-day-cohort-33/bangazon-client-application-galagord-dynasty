@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react"
+import { Link } from "react-router-dom";
+import ProductDetail from "../product/ProductDetail";
 
 // Author: Adam Knowles
 // Purpose: Show the category detail. This includes information(name, price, quantity) about each product the category contains.
@@ -57,10 +59,14 @@ useEffect(() => {getCategories();}, []);
                    <br></br>
                     {
                         item.products.map(item => {
+                            let itemId = +item.url.split("s/")[1]
                             return (
                                 <div>
                                     
-                                    <p>Name: {item.name}</p>
+                                    <p>Name: <Link
+                                    to={`/productDetail/${itemId
+                                    }`}
+                                    >{item.name}</Link></p>
                                     
                                     <p>Quantity: {item.quantity}</p>
                                     
