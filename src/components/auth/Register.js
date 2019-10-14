@@ -32,10 +32,10 @@ const Register = props => {
         // fetch all, find the one that, set the localStorage to the ID of that object
 
         register(newUser)
-                .then(() => APImanager.all("users"))
-                .then(r => r.find(user => user.username === this.state.username))
+                .then(() => getCustomers())
+                .then(r => r.find(each => each.userName === username))
                 .then(matchedUserInfo => localStorage.setItem("userId", matchedUserInfo.id))
-                .then(() => this.setState({userId: localStorage.getItem("userId")}))
+                .then(() => setUsers({userId: localStorage.getItem("userId")}))
                 .then(() => {
                     props.history.push({
                         pathname: "/"
@@ -44,13 +44,13 @@ const Register = props => {
     }
 
     const UsersList = props => {
-        const [users, setUsers] = useState([])
+        const [customers, setCustomers] = useState([])
         //When evoked getProducts perform a fetch, server Django responds with
         // a json string, convert it to an object then send the data to setProducts. The products
         // state variable is now updated and the state of the component has been changed.
       
-        const getUsers = () => {
-          fetch(`http://localhost:8000/users`, {
+        const getCustomers = () => {
+          fetch(`http://localhost:8000/customers`, {
             method: "GET",
             headers: {
               // gives you back the format you request data
