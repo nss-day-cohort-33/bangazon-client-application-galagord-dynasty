@@ -22,6 +22,17 @@ const MyProductsList = props => {
       .then(setMyProducts)
   }
 
+  const deleteMyProducts = (id) => {
+    fetch(`http://localhost:8000/products/${id}`, {
+        "method": "DELETE",
+        "headers": {
+            "Accept": "application/json",
+            
+        }
+    })
+        .then(getMyProducts)
+}
+
   useEffect(getMyProducts, [])
 
   return (
@@ -29,13 +40,13 @@ const MyProductsList = props => {
       <main className="products">
       <ol>
       {products.map(product => {
-          return<Link
+          return<><Link
           to={`/productDetail/${product.id
           }`}
           ><li>{product.name} </li></Link>
           
+        <button onClick={() => {deleteMyProducts(product.id)}}>Delete</button></>
         })}
-        <button>Delete</button>
         </ol>
       </main>
     </>
