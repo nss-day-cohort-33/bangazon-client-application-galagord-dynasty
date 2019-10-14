@@ -9,6 +9,7 @@ import CategoryList from "./category/CategoryList"
 import ProductList from "./home/ProductList"
 import CurrentOrder from "./order/CurrentOrder"
 import CategoryDetail from "./category/CategoryDetail"
+import MyProducts from "./product/MyProducts"
 
 const ApplicationViews = () => {
     return (
@@ -20,6 +21,16 @@ const ApplicationViews = () => {
                         <>
                             <h2>Products</h2>
                             <ProductList {...props}/>
+                        </>
+                    )
+                }}
+            /> }
+            {<Route
+                exact path="/myproducts" render={props => {
+                    return (
+                        <>
+                            
+                            <MyProducts {...props}/>
                         </>
                     )
                 }}

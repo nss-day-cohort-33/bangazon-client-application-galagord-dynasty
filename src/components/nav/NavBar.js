@@ -62,6 +62,11 @@ const NavBar = props => {
           </Link>
         </li>
         <li className="nav-item">
+          <Link className="nav-link" to="/myproducts">
+            My Products
+          </Link>
+        </li>
+        <li className="nav-item">
           <Link className="nav-link" to="/MyCart">
             <div style={{ display: "flex" }}>
               <div>My Cart</div>
