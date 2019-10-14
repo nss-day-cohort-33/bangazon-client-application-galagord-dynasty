@@ -43,12 +43,25 @@ const Register = props => {
                 })
     }
 
-
-        //     .then(() => {
-        //     props.history.push({
-        //         pathname: "/"
-        //     })
-        // })
+    const UsersList = props => {
+        const [users, setUsers] = useState([])
+        //When evoked getProducts perform a fetch, server Django responds with
+        // a json string, convert it to an object then send the data to setProducts. The products
+        // state variable is now updated and the state of the component has been changed.
+      
+        const getUsers = () => {
+          fetch(`http://localhost:8000/users`, {
+            method: "GET",
+            headers: {
+              // gives you back the format you request data
+              Accept: "application/json",
+            }
+          })
+            .then(response => response.json())
+            .then(setUsers)
+        }
+      
+        useEffect(getUsers, [])
 
     return (
         <main style={{ textAlign: "center" }}>
