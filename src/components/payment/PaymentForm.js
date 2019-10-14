@@ -2,6 +2,12 @@ import React, { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 
 const PaymentForm = () => {
+  const merchant_name = useRef();
+  const account_number = useRef();
+  const expiration_date = useRef();
+
+
+
   return (
     <fieldset>
       {/* <input type="button" value="Add New Card" /><br/> */}
@@ -10,8 +16,6 @@ const PaymentForm = () => {
       Mastercard Visa AMEX Discover
       <input type="radio" name="paypal" id="paypal" />
       Paypal<br/>
-      <label htmlFor="customerName">Name(as it appears on card)</label><br/>
-      <input type="text" name="customerName" id="customerName" /><br/>
       <label htmlFor="cardNumber">Card Number(no dashes or spaces)</label><br/>
       <input type="string" name="cardNumber" id="cardNumber" /><br/>
       <label>Expiration Date</label><br/>
@@ -38,10 +42,6 @@ const PaymentForm = () => {
                     <option value="21"> 2024</option>
                 </select>
       <br/>
-      <label htmlFor="cardNumber">
-        Security Code(3 on back; AMEX 4 on front)
-      </label><br/>
-      <input type="text" name="cardNumber" id="cardNumber" /><br/><br/>
       <input type="submit" value="Submit" />
     </fieldset>
   )

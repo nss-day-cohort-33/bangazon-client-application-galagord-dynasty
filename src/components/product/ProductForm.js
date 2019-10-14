@@ -4,39 +4,7 @@ import useSimpleAuth from "../../hooks/ui/useSimpleAuth";
 
 
 const ProductForm = props => {
-  const name = useRef();
-  const description = useRef();
-  const quantity = useRef();
-  const price = useRef();
-  const location = useRef();
-  const category_id = useRef();
 
-  // Create a state variable for itinerary items - useState()
-  const [categoryList, setCategoryList] = useState([]);
-  const { isAuthenticated } = useSimpleAuth()
-  const { toggleDialog, modalIsOpen } = useModal("#category_alert");
-
-  const handleCreate = e => {
-    e.preventDefault();
-
-    const newProduct = {
-      name: name.current.value,
-      description: description.current.value,
-      quantity: quantity.current.value,
-      price: price.current.value,
-      location: location.current.value,
-      category_type_id: category_id.current.value,
-      customer_id: localStorage.getItem("customer_id")
-    };
-    if (category_id.current.value === "") {
-      toggleDialog(true);
-    } else {
-      createProduct(newProduct).then(() => {
-        props.history.push({
-          pathname: "/"
-        });
-      });
-    }
   };
 
   const getCategories = () => {

@@ -7,56 +7,11 @@ const NavBar = props => {
   const { isAuthenticated, logout } = useSimpleAuth();
   const [order, setOrder] = useState([]);
 
-    return (
-        <nav className="navbar navbar-light light-blue flex-md-nowrap p-0 shadow">
-            <div style={{fontSize: "2em", marginLeft: "1em"}}><strong>Welcome To Bangazon</strong></div>
-            <ul className="nav nav-pills nav-fill">
-                <li className="nav-item">
-                    <Link className="nav-link" to="/">Home</Link>
-                </li>
-                <li className="nav-item">
-                    <Link className="nav-link" to="/categorylist">Category List</Link>
-                </li>
-                <li>
-                    <Link className="nav-link" to="/profile">Profile</Link>
-                </li>
-                <li className="nav-item">
-                    <Link className="nav-link" to="/sell_product">Sell Product</Link>
-                </li>
-                <li className="nav-item">
-                    <Link className="nav-link" to="/MyCart">My Cart</Link>
-                </li>
-                {
-                    isAuthenticated() ?
-                        <li className="nav-item">
-                            <button className="nav-link fakeLink"
-                                onClick={() => {
-                                    logout()
-                                    props.history.push({
-                                        pathname: "/"
-                                    })
-                                }
-                                }
-                            >Logout</button>
-                        </li> :
-                        <>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/login">Login</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/register">Register</Link>
-                        </li>
-                        </>
-                }
-            </ul>
-        </nav>
-    )
-}
-  useEffect(() => {
-      if (isAuthenticated()){
-          getCurrentOrder();
-      }
-  }, []);
+//   useEffect(() => {
+//       if (isAuthenticated()){
+//           getCurrentOrder();
+//       }
+//   }, []);
 
   const getCurrentOrder = props => {
     return fetch(`http://localhost:8000/orderproducts`, {
@@ -97,7 +52,7 @@ const NavBar = props => {
           </Link>
         </li>
         <li>
-          <Link className="nav-link" to="/">
+          <Link className="nav-link" to="/profile">
             Profile
           </Link>
         </li>
