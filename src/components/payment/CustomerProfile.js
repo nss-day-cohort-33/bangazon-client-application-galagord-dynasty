@@ -14,13 +14,13 @@ const CustomerProfile = () => {
       {
         method: "GET",
         headers: {
-          Accept: "application/json"
+        Accept: "application/json"
         }
       }
     )
       .then(response => response.json())
       .then(data => {
-        console.log("this is my data", data)
+
         setCustomerProfile(data)
       })
   }
@@ -40,7 +40,7 @@ const CustomerProfile = () => {
       </div>
       <section className="product">
                 <Link className="nav-link" to={`./PaymentForm`}>
-                    <h5>Add a Payment</h5>
+                    <h5>Add New Payment</h5>
                 </Link>
                 <Link className="nav-link" to={`./PaymentList`}>
                     <h5>Payment Options</h5>

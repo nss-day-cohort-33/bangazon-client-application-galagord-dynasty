@@ -11,6 +11,7 @@ import CurrentOrder from "./order/CurrentOrder"
 import CategoryDetail from "./category/CategoryDetail"
 import CustomerProfile from "./payment/CustomerProfile"
 import PaymentForm from "./payment/PaymentForm"
+import PaymentOptions from "./payment/PaymentOptions"
 
 
 const ApplicationViews = () => {
@@ -82,6 +83,11 @@ const ApplicationViews = () => {
                 path="/paymentform" render={props => {
                     return <PaymentForm {...props} />
                 }}
+            />
+
+            <Route exact path="/paymentlist" render={props => {
+                return <PaymentOptions {...props} />
+            }}
             />
 
         </React.Fragment>
