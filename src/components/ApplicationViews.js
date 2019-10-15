@@ -10,6 +10,9 @@ import ProductList from "./home/ProductList"
 import CurrentOrder from "./order/CurrentOrder"
 import CategoryDetail from "./category/CategoryDetail"
 import MyProducts from "./product/MyProducts"
+import CustomerProfile from "./payment/CustomerProfile"
+import PaymentForm from "./payment/PaymentForm"
+
 
 const ApplicationViews = () => {
     return (
@@ -53,26 +56,42 @@ const ApplicationViews = () => {
                     return <Login {...props} />
                 }}
             />
+
             <Route
                 path="/productDetail/:productDetailId(\d+)" render={props => {
                     const productId = +props.match.params.productDetailId
                     return <ProductDetail {...props} productDetailId={productId} />
                 }}
             />
+
             <Route
                 path="/categoryDetail/:categoryDetailId(\d+)" render={props => {
                     const categoryId = +props.match.params.categoryDetailId
                     return <CategoryDetail {...props} categoryDetailId={categoryId} />
                 }}
             />
+
             <Route
                 path="/MyCart" render={props => {
                     return <CurrentOrder {...props} />
                 }}
             />
+
             <Route
                 path="/categorylist" render={props => {
                     return <CategoryList {...props} />
+                }}
+            />
+
+            <Route
+                path="/profile" render={props => {
+                    return <CustomerProfile {...props} />
+                }}
+            />
+
+            <Route
+                path="/paymentform" render={props => {
+                    return <PaymentForm {...props} />
                 }}
             />
 
