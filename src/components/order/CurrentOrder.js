@@ -1,102 +1,102 @@
 import React, { useState, useEffect } from "react";
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth";
 
-// Author: Krystal Gates
-// Purpose: Show product detail
+const Cart = props => {
+  const [open_order, setOrder] = useState([]);
+  const { isAuthenticated } = useSimpleAuth();
 
-const CurrentOrder = props => {
-  const [order, setOrder] = useState([]);
-  const { isAuthenticated } = useSimpleAuth()
-
-  const getCurrentOrder = props => {
-    return fetch(`http://localhost:8000/orderproducts`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        Authorization: `Token ${localStorage.getItem("bangazon_token")}`
+  const getOpenOrder = productDetailId => {
+    fetch(
+      `http://localhost:8000/orders?customer=${localStorage.getItem(
+        "customer_id"
+      )}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Token ${localStorage.getItem("bangazon_token")}`
+        }
       }
-    })
+    )
       .then(response => response.json())
-      .then(data => {
-        const currentOrder = data.filter(
-          filterOrder =>
-            filterOrder.order.payment === null &&
-            filterOrder.order.customer.url ===
-              `http://localhost:8000/customers/${localStorage.getItem(
-                "customer_id"
-              )}`
-        );
-        setOrder(currentOrder);
-        console.log("Here is the data", currentOrder);
+      .then(order => {
+        console.log("order", order);
+        setOrder(order);
       });
   };
 
-  useEffect(() => {
-    if (isAuthenticated()){
-        getCurrentOrder();
-    }
-}, []);
+  // const getOpenOrder = () => {
+  //   fetch(
+  //     `http://localhost:8000/orders?customer=${localStorage.getItem(
+  //       "customer_id"
+  //     )}`,
+  //     {
+  //       method: "GET",
+  //       headers: {
+  // "Content-Type": "application/json",
+  // Accept: "application/json",
+  // Authorization: `Token ${localStorage.getItem("bangazon_token")}`
+  //       }
+  //     }
+  //   )
+  //     .then(response => {
+  //       return response.json();
+  //     })
+  //     .then(setOrder);
+  // };
+  console.log("StateOrder", open_order);
+
+  useEffect(getOpenOrder, []);
 
   return (
     <>
-      <main className="shoppingCart">
-        <h1 style={{ margin: "1em 0 1em 1em" }}><strong>My Shopping Cart</strong></h1>
-        {
-            !isAuthenticated() ? <div class="alert alert-warning" role="alert" style={{ textAlign: "center" }}>You are not logged in. Please Login to add to your cart.</div> : null
-        }
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-evenly"
-          }}
-        >
-          {order.map(orderitem => {
-            return (
-              <div class="card" style={{ margin: "2em", width: "22rem" }}>
-                <div class="card-body">
-                  <h2 class="card-title"><strong>{orderitem.product.name}</strong></h2>
-                  <div
-                    style={{
-                      marginBottom: ".5em",
-                      fontSize: "1.25em",
-                      display: "flex",
-                      justifyContent: "space-around"
-                    }}
-                  >
-                    <div class="card-text">
-                      <strong>Price:</strong> ${orderitem.product.price}
+      <main className="order-items">
+        <h2>My Cart</h2>
+          {open_order.map(item => {
+            return item.line_items.map(item => {
+              return (
+                <div style={{display: "flex",flexDirection:"row", justifyContent: "space-between"}}>
+                <div class="card" style={{ margin: "2em", width: "22rem" }}>
+                  <div class="card-body">
+                    <h2 class="card-title">
+                      <strong>{item.name}</strong>
+                    </h2>
+                    <div
+                      style={{
+                        marginBottom: ".5em",
+                        fontSize: "1.25em",
+                        display: "flex",
+                        justifyContent: "space-around"
+                      }}
+                    >
+                      <div class="card-text">
+                        <strong>Price:</strong> ${item.price}
+                      </div>
                     </div>
-                    <div class="card-text">
-                      <strong>QTY:</strong> {orderitem.quantity}
-                    </div>
-                  </div>
 
-                  <p class="card-text">
-                    {orderitem.product.description}
-                  </p>
-                  <div
-                    style={{
-                      margin: "1em .5em 0 .5em",
-                      display: "flex",
-                      justifyContent: "space-between"
-                    }}
-                  >
-                    <a href="#" class="btn btn-danger">
-                      Remove All
-                    </a>
-                    <a href="#" class="btn btn-primary">
-                      Remove Single
-                    </a>
+                    <p class="card-text">{item.description}</p>
+                    <div
+                      style={{
+                        margin: "1em .5em 0 .5em",
+                        display: "flex",
+                        justifyContent: "space-between"
+                      }}
+                    >
+                      <a href="#" class="btn btn-danger">
+                        Remove All
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
+                </div>
+              );
+            });
           })}
-        </div>
+        <button>Add Payment to complete order</button>
       </main>
     </>
   );
 };
 
-export default CurrentOrder;
+export default Cart;
