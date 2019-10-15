@@ -12,8 +12,9 @@ const CurrentOrder = props => {
     return fetch(`http://localhost:8000/orderproducts`, {
       method: "GET",
       headers: {
-        Accept: "application/json",
-        Authorization: `Token ${localStorage.getItem("bangazon_token")}`
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
       }
     })
       .then(response => response.json())

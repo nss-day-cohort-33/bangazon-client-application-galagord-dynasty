@@ -21,7 +21,9 @@ const ProductList = props => {
       method: "GET",
       headers: {
         // gives you back the format you request data
-        Accept: "application/json",
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
       }
     })
       .then(response => response.json())

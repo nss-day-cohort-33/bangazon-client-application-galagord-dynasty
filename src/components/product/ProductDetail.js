@@ -16,6 +16,8 @@ const ProductDetail = props => {
             "method": "GET",
             "headers": {
                 "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
             }
         })
             .then(response => response.json())
@@ -31,7 +33,8 @@ const ProductDetail = props => {
             "method": "GET",
             "headers": {
                 "Accept": "application/json",
-                 "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
             }
         })
             .then(response => response.json())
