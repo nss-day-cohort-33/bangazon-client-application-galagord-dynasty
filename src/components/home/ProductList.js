@@ -51,19 +51,10 @@ const ProductList = props => {
                         <strong>{product.name}</strong>
                       </Link>
                     </h2>
-                    <div
-                      style={{
-                        marginBottom: ".5em",
-                        fontSize: "1.25em",
-                        display: "flex",
-                        justifyContent: "space-around"
-                      }}
-                    >
                       <div class="card-text">
                         <strong>Price:</strong> ${product.price}
                       </div>
-                    </div>
-
+                      <br/>
                     <p class="card-text">{product.description}</p>
                   </div>
                 </div>

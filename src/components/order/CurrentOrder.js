@@ -14,18 +14,18 @@ const Cart = props => {
     })
       .then(response => response.json())
       .then(order => {
-        console.log("order", order)
+        console.log("order", order);
         setOrder(order);
       });
   };
 
-  const removeProductFromOrder = (id) => {
+  const removeProductFromOrder = id => {
     fetch(`http://localhost:8000/orderproducts/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+        Accept: "application/json",
+        Authorization: `Token ${localStorage.getItem("bangazon_token")}`
       }
     }).then(() => getOpenOrder);
   };
@@ -52,19 +52,10 @@ const Cart = props => {
                       <h2 class="card-title">
                         <strong>{item.name}</strong>
                       </h2>
-                      <div
-                        style={{
-                          marginBottom: ".5em",
-                          fontSize: "1.25em",
-                          display: "flex",
-                          justifyContent: "space-around"
-                        }}
-                      >
-                        <div class="card-text">
-                          <strong>Price:</strong> ${item.price}
-                        </div>
+                      <div class="card-text">
+                        <strong>Price:</strong> ${item.price}
                       </div>
-
+                      <br />
                       <p class="card-text">{item.description}</p>
                       <div
                         style={{
@@ -73,7 +64,10 @@ const Cart = props => {
                           justifyContent: "space-between"
                         }}
                       >
-                        <button class="btn btn-danger" onClick={() => removeProductFromOrder()}>
+                        <button
+                          class="btn btn-danger"
+                          onClick={() => removeProductFromOrder()}
+                        >
                           Remove
                         </button>
                       </div>
