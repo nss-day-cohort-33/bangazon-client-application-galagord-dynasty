@@ -40,7 +40,7 @@ const Home = props => {
     return (
         <>
         <main className="explorer">
-            <label name="location-of-product">Search</label>
+            <label name="location-of-product">Filter all products by location:</label>
             <br></br>
             <form onSubmit={SearchSubmitButton}>
                 <input placeholder="Type in a city name..."
@@ -50,6 +50,7 @@ const Home = props => {
                 ref={searchBar}
                 type="text">
                 </input>
+                <button type="submit">Submit</button>
             </form>
             <h5><ProductList {...props} products={products} /></h5>
         </main>
