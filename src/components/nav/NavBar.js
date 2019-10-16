@@ -7,36 +7,8 @@ const NavBar = props => {
   const { isAuthenticated, logout } = useSimpleAuth();
   const [order, setOrder] = useState([]);
 
-  useEffect(() => {
-      if (isAuthenticated()){
-          getCurrentOrder();
-      }
-  }, []);
-
-  const getCurrentOrder = props => {
-    return fetch(`http://localhost:8000/orderproducts`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        Authorization: `Token ${localStorage.getItem("bangazon_token")}`
-      }
-    })
-      .then(response => response.json())
-      .then(data => {
-        const currentOrder = data.filter(
-          filterOrder =>
-            filterOrder.order.payment === null &&
-            filterOrder.order.customer.url ===
-              `http://localhost:8000/customers/${localStorage.getItem(
-                "customer_id"
-              )}`
-        );
-        setOrder(currentOrder);
-      });
-  };
-
   return (
-    <nav className="navbar navbar-light light-blue flex-md-nowrap p-0 shadow">
+  <nav className="navbar navbar-light light-blue flex-md-nowrap p-0 shadow">
       <div style={{ fontSize: "2em", marginLeft: "1em" }}>
         <strong>Welcome To Bangazon</strong>
       </div>
@@ -51,48 +23,37 @@ const NavBar = props => {
             Category List
           </Link>
         </li>
+        {isAuthenticated() ? (
         <li>
           <Link className="nav-link" to="/profile">
             Profile
           </Link>
         </li>
+        ) : null }
+        {isAuthenticated() ? (
         <li className="nav-item">
           <Link className="nav-link" to="/sell_product">
             Sell Product
           </Link>
         </li>
-        
-        { isAuthenticated() ? (<li className="nav-item">
-          <Link className="nav-link" to="/myproducts">
-            My Products
-          </Link>
-        </li>) : null
-        
-      }
-       
+        ) : null }
+        {isAuthenticated() ? (
         <li className="nav-item">
           <Link className="nav-link" to="/MyCart">
-            <div style={{ display: "flex" }}>
-              <div>My Cart</div>
-              <div
-                style={{
-                  color: "white",
-                  background: "blue",
-                  borderRadius: "100%",
-                  marginLeft: ".5em",
-                  padding: ".1em .7em .1em .7em"
-                }}
-              >
-                <strong>
-                {order.length}
-                </strong>
-              </div>
-            </div>
+              My Cart
           </Link>
         </li>
+        ) : null}
+        {isAuthenticated() ? (
+        <li className="nav-item">
+          <Link className="nav-link" to="/myproducts">
+              My Products
+          </Link>
+        </li>
+        ) : null}
         {isAuthenticated() ? (
           <li className="nav-item">
-            <Link className="nav-link-fakeLink"
+            <Link className="nav-link"
             onClick={() => localStorage.clear()} to="/">
               Logout
             </Link>

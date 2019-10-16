@@ -11,11 +11,13 @@ const MyProductsList = props => {
   
 
   const getMyProducts = () => {
-    fetch(`http://localhost:8000/products?customer=${localStorage.getItem("customer_id")}`, {
+    fetch(`http://localhost:8000/products/myproducts`, {
       method: "GET",
       headers: {
         
-        Accept: "application/json",
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
       }
     })
       .then(response => response.json())
@@ -26,7 +28,9 @@ const MyProductsList = props => {
     fetch(`http://localhost:8000/products/${id}`, {
         "method": "DELETE",
         "headers": {
-            "Accept": "application/json",
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
             
         }
     })

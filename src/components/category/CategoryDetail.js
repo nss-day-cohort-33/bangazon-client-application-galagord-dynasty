@@ -15,6 +15,8 @@ const getCategory = (categoryDetailId) => {
         "method": "GET",
         "headers": {
             "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
         }
 
 
@@ -31,7 +33,9 @@ const getCategories = () => {
     fetch("http://localhost:8000/categories", {
       method: "GET",
       headers: {
-        Accept: "application/json"
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
       }
     })
       // Convert to JSON
