@@ -9,6 +9,7 @@ const PaymentForm = props => {
   const merchant_name = useRef();
   const account_number = useRef();
   const expiration_date = useRef();
+  const created_at = useRef();
   const { isAuthenticated } = useSimpleAuth();
 
   const createPayment = e => {
@@ -25,13 +26,19 @@ const PaymentForm = props => {
               "body": JSON.stringify({
               "merchant_name": merchant_name.current.value,
               "account_number": account_number.current.value,
-              "expiration_date": expiration_date.current.value
+              "expiration_date": expiration_date.current.value,
+              "created_at": created
 
           })
           })
               .then(response => response.json())
-              .then(() => {
-              props.history.push("/")
+              .then((response) => {
+                // console.log("error" in response)
+                if("error" in response === true){
+                  alert("The expiration date is in the past")
+                } else{
+                  props.history.push("/")
+                }
               })
 
       }
@@ -54,15 +61,12 @@ return (
           <input type="text" ref={account_number} name="account_number" required></input>
         </fieldset>
 
+
         <fieldset>
-        <fieldset>
-          <label htmlFor="expiration_date">Expiration Date:</label>
+          <label htmlFor="exp_date">Expiration Date:</label>
           <input type="date" ref={expiration_date} name="expiration_date" min={new Date()} required></input>
         </fieldset>
-                </fieldset>
-      <br/>
-
-
+        <input type="date" ref={created_at} name="expiration_date" defaultValue={new Date()} hidden></input>
         <button type="submit">Add Payment</button>
       </form>
   </>
