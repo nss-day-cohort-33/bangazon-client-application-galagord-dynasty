@@ -9,6 +9,7 @@ import CategoryList from "./category/CategoryList"
 import ProductList from "./home/ProductList"
 import CurrentOrder from "./order/CurrentOrder"
 import CategoryDetail from "./category/CategoryDetail"
+import MyProducts from "./product/MyProducts"
 import CustomerProfile from "./payment/CustomerProfile"
 import PaymentForm from "./payment/PaymentForm"
 import PaymentOptions from "./payment/PaymentOptions"
@@ -30,6 +31,17 @@ const ApplicationViews = () => {
                     )
                 }}
             /> }
+            {<Route
+                exact path="/myproducts" render={props => {
+                    return (
+                        <>
+                            
+                            <MyProducts {...props}/>
+                        </>
+                    )
+                }}
+            /> }
+
             {isAuthenticated() ? (
             <Route
                 path="/sell_product" render={props => {
