@@ -18,9 +18,9 @@ const PaymentForm = props => {
           fetch(`http://localhost:8000/payments`, {
               "method": "POST",
               "headers": {
-              "Accept": "application/json",
-              "Content-Type": "application/json",
-              "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
               },
               "body": JSON.stringify({
               "merchant_name": merchant_name.current.value,
@@ -31,7 +31,7 @@ const PaymentForm = props => {
           })
               .then(response => response.json())
               .then(() => {
-              props.history.push("/profile")
+              props.history.push("/")
               })
 
       }
