@@ -6,7 +6,7 @@ const ProductSearch = props => {
     const searchBar = createRef()
     const [products, setProducts] = useState([])
 
-    // focusSearchInput = () => searchBar.current.focus()
+    const focusSearchInput = () => searchBar.current.focus()
 
     const getProducts = () => {
         fetch(`http://localhost:8000/products`, {
@@ -48,7 +48,7 @@ const ProductSearch = props => {
             </div>
             </ol>
             <fieldset>
-                <button onClick={createRef}>Search</button>
+                <button onClick={focusSearchInput}>Search</button>
             </fieldset>
         </main>
         </>
