@@ -2,16 +2,15 @@
 //Purpose: Allow a user to get all the Bangazon products from the database.
 //Methods: GET
 
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./ProductList.css"
+import "./ProductList.css";
 import { reverse } from "dns";
-
 
 // a function to give you all your products. The products variable is the state and
 // use setProducts to change the state of products the variable
 const ProductList = props => {
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState([]);
   //When evoked getProducts perform a fetch, server Django responds with
   // a json string, convert it to an object then send the data to setProducts. The products
   // state variable is now updated and the state of the component has been changed.
@@ -21,31 +20,59 @@ const ProductList = props => {
       method: "GET",
       headers: {
         // gives you back the format you request data
-        "Accept": "application/json",
+        Accept: "application/json",
         "Content-Type": "application/json",
-        "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+        Authorization: `Token ${localStorage.getItem("bangazon_token")}`
       }
     })
       .then(response => response.json())
-      .then(setProducts)
-  }
+      .then(setProducts);
+  };
 
-  useEffect(getProducts, [])
+  useEffect(getProducts, []);
 
   return (
     <>
-      <main className="products">
-      <ol>
-      {products.slice(-20).map(product => {
-          return<Link
-          to={`/productDetail/${product.id
-          }`}
-          ><li>{product.name}</li></Link>
+      <main
+        className="products"
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-around"
+        }}
+      >
+          {products.slice(-20).map(product => {
+            return (
+              <div>
+                <div class="card" style={{ margin: "2em", width: "22rem" }}>
+                  <div class="card-body">
+                    <h2 class="card-title">
+                      <Link to={`/productDetail/${product.id}`}>
+                        <strong>{product.name}</strong>
+                      </Link>
+                    </h2>
+                    <div
+                      style={{
+                        marginBottom: ".5em",
+                        fontSize: "1.25em",
+                        display: "flex",
+                        justifyContent: "space-around"
+                      }}
+                    >
+                      <div class="card-text">
+                        <strong>Price:</strong> ${product.price}
+                      </div>
+                    </div>
+
+                    <p class="card-text">{product.description}</p>
+                  </div>
+                </div>
+              </div>
+            );
           })}
-        </ol>
       </main>
     </>
-  )
-}
+  );
+};
 
-export default ProductList
+export default ProductList;
