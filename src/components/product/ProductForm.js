@@ -26,7 +26,6 @@ const ProductForm = props => {
       price: price.current.value,
       location: location.current.value,
       category_type_id: category_id.current.value,
-      customer_id: localStorage.getItem("customer_id")
     };
     if (category_id.current.value === "") {
       toggleDialog(true);
@@ -44,8 +43,9 @@ const ProductForm = props => {
     fetch("http://localhost:8000/categories", {
       method: "GET",
       headers: {
-        Accept: "application/json",
-        Authorization: `Token ${localStorage.getItem("bangazon_token")}`
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
       }
     })
       //   Convert to JSON
@@ -61,8 +61,8 @@ const ProductForm = props => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Token ${localStorage.getItem("bangazon_token")}`
+        "Accept": "application/json",
+        "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
       },
       body: JSON.stringify(newProduct)
     }).then(res => res.json());
@@ -113,7 +113,7 @@ const ProductForm = props => {
       </dialog>
       {/* Add Product Form */}
       <main style={{ textAlign: "center" }}>
-        { !isAuthenticated() ? <div class="alert alert-warning" role="alert">You are not logged in. Please Login to add to a Product.</div> :
+        {/* { !isAuthenticated() ? <div class="alert alert-warning" role="alert">You are not logged in. Please Login to add to a Product.</div> : */}
         <form className="form--login" onSubmit={handleCreate}>
           <h1 className="h3 mb-3 font-weight-normal">Create a New Product</h1>
           <fieldset>
@@ -192,7 +192,6 @@ const ProductForm = props => {
             <button type="submit">Submit</button>
           </fieldset>
         </form>
-        }
       </main>
     </>
   );

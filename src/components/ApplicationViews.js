@@ -11,9 +11,11 @@ import CurrentOrder from "./order/CurrentOrder"
 import CategoryDetail from "./category/CategoryDetail"
 import CustomerProfile from "./payment/CustomerProfile"
 import PaymentForm from "./payment/PaymentForm"
+import useSimpleAuth from "../hooks/ui/useSimpleAuth"
 
 
 const ApplicationViews = () => {
+    const { isAuthenticated } = useSimpleAuth();
     return (
         <React.Fragment>
 
@@ -27,13 +29,13 @@ const ApplicationViews = () => {
                     )
                 }}
             /> }
-
+            {isAuthenticated() ? (
             <Route
                 path="/sell_product" render={props => {
                     return <ProductForm {...props} />
                 }}
             />
-
+            ) : null}
             <Route
                 path="/register" render={props => {
                     return <Register {...props} />
@@ -59,30 +61,32 @@ const ApplicationViews = () => {
                     return <CategoryDetail {...props} categoryDetailId={categoryId} />
                 }}
             />
-
+            {isAuthenticated() ? (
             <Route
                 path="/MyCart" render={props => {
                     return <CurrentOrder {...props} />
                 }}
             />
-
+            ) : null }
             <Route
                 path="/categorylist" render={props => {
                     return <CategoryList {...props} />
                 }}
             />
-
+            {isAuthenticated() ? (
             <Route
                 path="/profile" render={props => {
                     return <CustomerProfile {...props} />
                 }}
             />
-
+            ) : null}
+            {isAuthenticated() ? (
             <Route
                 path="/paymentform" render={props => {
                     return <PaymentForm {...props} />
                 }}
             />
+            ) : null}
 
         </React.Fragment>
     )

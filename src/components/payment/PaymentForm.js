@@ -25,8 +25,7 @@ const PaymentForm = props => {
               "body": JSON.stringify({
               "merchant_name": merchant_name.current.value,
               "account_number": account_number.current.value,
-              "expiration_date": expiration_date.current.value,
-              "customer_id": localStorage.getItem("customer_id")
+              "expiration_date": expiration_date.current.value
 
           })
           })
