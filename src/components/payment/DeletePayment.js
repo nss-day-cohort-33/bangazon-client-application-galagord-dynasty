@@ -13,6 +13,8 @@ const Payment = props => {
         fetch(`http://localhost:8000/payments/${paymentOption}`, {
           method: "DELETE",
           headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
             "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
           }
         })
