@@ -12,6 +12,7 @@ import CategoryDetail from "./category/CategoryDetail"
 import MyProducts from "./product/MyProducts"
 import CustomerProfile from "./payment/CustomerProfile"
 import PaymentForm from "./payment/PaymentForm"
+import PaymentOptions from "./payment/PaymentOptions"
 import useSimpleAuth from "../hooks/ui/useSimpleAuth"
 
 
@@ -99,6 +100,11 @@ const ApplicationViews = () => {
                 }}
             />
             ) : null}
+
+            <Route exact path="/paymentlist" render={props => {
+                return <PaymentOptions {...props} />
+            }}
+            />
 
         </React.Fragment>
     )

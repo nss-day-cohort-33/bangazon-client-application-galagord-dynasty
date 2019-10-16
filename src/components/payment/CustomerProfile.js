@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
+import useSimpleAuth from "../../hooks/ui/useSimpleAuth"
 
 
 const CustomerProfile = () => {
@@ -7,25 +8,26 @@ const CustomerProfile = () => {
   //user is needed because the second obj is nested and react is looking for the nested
   // obj on the first render
   const [customer, setCustomerProfile] = useState({ user: {} })
+  const { isAuthenticated } = useSimpleAuth()
 
   const getCustomer = () => {
+    if (isAuthenticated())
     fetch(
-      `http://localhost:8000/customers/${localStorage.getItem("customer_id")}`,
+      `http://localhost:8000/customers/one_customer`,
       {
         method: "GET",
         headers: {
           "Accept": "application/json",
-          "Content-Type": "application/json",
           "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
         }
       }
     )
       .then(response => response.json())
       .then(data => {
-        console.log("this is my data", data)
-        setCustomerProfile(data)
+      console.log(data)
+      setCustomerProfile(data)
       })
-  }
+    }
 
   //Create useEffect()
   useEffect(getCustomer, [])
@@ -42,7 +44,7 @@ const CustomerProfile = () => {
       </div>
       <section className="product">
                 <Link className="nav-link" to={`./PaymentForm`}>
-                    <h5>Add a Payment</h5>
+                    <h5>Add New Payment</h5>
                 </Link>
                 <Link className="nav-link" to={`./PaymentList`}>
                     <h5>Payment Options</h5>
