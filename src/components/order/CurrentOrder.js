@@ -81,7 +81,7 @@ const Cart = props => {
           })}
         </div>
         <Link className="nav-link" to="/orderform">
-        <button className="btn btn-primary">Complete Order >></button>
+        {open_order.length === null ? <button className="btn btn-primary">Complete Order >></button> : null}
         </Link>
       </main>
     </>
