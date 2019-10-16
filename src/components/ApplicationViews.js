@@ -7,6 +7,7 @@ import ProductDetail from "./product/ProductDetail"
 import ProductForm from "./product/ProductForm"
 import CategoryList from "./category/CategoryList"
 import ProductList from "./home/ProductList"
+import ProductSearch from "./home/ProductSearch"
 import CurrentOrder from "./order/CurrentOrder"
 import CategoryDetail from "./category/CategoryDetail"
 import CustomerProfile from "./payment/CustomerProfile"
@@ -24,7 +25,7 @@ const ApplicationViews = () => {
                     return (
                         <>
                             <h2>Products</h2>
-                            <ProductList {...props}/>
+                            <ProductSearch {...props}/>
                         </>
                     )
                 }}

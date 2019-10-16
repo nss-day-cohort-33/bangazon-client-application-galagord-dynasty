@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, createRef } from "react"
 import { Link } from "react-router-dom";
 import "./ProductList.css"
 
@@ -6,7 +6,7 @@ const ProductSearch = props => {
     const searchBar = createRef()
     const [products, setProducts] = useState([])
 
-    focusSearchInput = () => textInput.current.focus()
+    // focusSearchInput = () => searchBar.current.focus()
 
     const getProducts = () => {
         fetch(`http://localhost:8000/products`, {
@@ -35,20 +35,20 @@ const ProductSearch = props => {
                 </fieldset>
             </form>
             <div>
-                {props.products.filter(them => {
+                {products.filter(them => {
                     if (them.location === searchBar)
                     return them })
                     .slice(-20)
                     .map(each => {
                         return<Link
                         to={`/productDetail/${each.id}`}>
-                            <li>{each.name}</li></Link>
+                            <li>{each.name} in {each.location}</li></Link>
                     })
                 }
             </div>
             </ol>
             <fieldset>
-                <button onClick={focusSearchInput}>Search</button>
+                <button onClick={createRef}>Search</button>
             </fieldset>
         </main>
         </>
