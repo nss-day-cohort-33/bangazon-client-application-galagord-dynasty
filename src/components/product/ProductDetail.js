@@ -50,6 +50,7 @@ const ProductDetail = props => {
   return (
     <>
       <main className="productDetail">
+        {console.log("Product",product)}
         <h1>{product.name}</h1>
         <h3>Price: {product.price}</h3>
         <h4>Quantity Available: {product.quantity}</h4>
