@@ -3,6 +3,10 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
 
+// Author: Adam Knowles
+// Purpose: Show all products and related information that a user has shown for sale
+// Methods: GET, DELETE
+
 
 
 
