@@ -10,7 +10,7 @@ const Home = props => {
     const searchBar = useRef()
 
     const getProducts = () => {
-    fetch(`http://localhost:8000/products`, {
+    fetch(`http://localhost:8000/products?limit=true`, {
         method: "GET",
         headers: {
             "Accept": "application/json",
