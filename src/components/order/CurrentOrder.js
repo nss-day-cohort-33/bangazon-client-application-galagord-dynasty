@@ -4,6 +4,20 @@ import { Link } from "react-router-dom";
 const Cart = props => {
   const [open_order, setOrder] = useState([]);
 
+  const cancelOrder = id => {
+    fetch(`http://localhost:8000/orders/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Token ${localStorage.getItem("bangazon_token")}`
+      }
+    })
+    .then(()=> {
+      getOpenOrder()
+    })
+  };
+
   const getOpenOrder = () => {
     fetch(`http://localhost:8000/orders?payment=none`, {
       method: "GET",
@@ -31,7 +45,10 @@ const Cart = props => {
     }).then(() => getOpenOrder);
   };
 
-  useEffect(getOpenOrder, []);
+  useEffect(() => {
+    getOpenOrder()
+    cancelOrder()
+  }, []);
 
   return (
     <>
@@ -79,15 +96,30 @@ const Cart = props => {
             });
           })}
         </div>
-        <Link className="nav-link" to="/orderform">
+        {/* <div style={{ display: "flex" }}> */}
+          <Link className="nav-link" to="/orderform">
+            {open_order.length > 0 ? (
+              <button className="btn btn-primary">Complete Order >></button>
+            ) : (
+              <div
+                className="alert alert-warning"
+                role="alert"
+                style={{ textAlign: "center" }}
+              >
+                You currently have no open order!
+              </div>
+            )}
+          </Link>
           {open_order.length > 0 ? (
-            <button className="btn btn-primary">Complete Order >></button>
-          ) : (
-            <div class="alert alert-warning" role="alert" style={{textAlign: "center"}}>
-              You currently have no open order!
-            </div>
-          )}
-        </Link>
+            <button
+              className="btn btn-danger"
+              style={{marginLeft: "1em"}}
+              onClick={() => cancelOrder(open_order[0].id)}
+            >
+              Cancel Order
+            </button>
+          ) : null}
+        {/* </div> */}
       </main>
     </>
   );

@@ -77,7 +77,6 @@ const ProductForm = props => {
 
     const handler = e => {
       if (e.keyCode === 27) {
-        console.log(`MyItinerary useEffect() modalIsOpen = ${modalIsOpen}`);
         if (modalIsOpen) {
           toggleDialog(false);
         }
