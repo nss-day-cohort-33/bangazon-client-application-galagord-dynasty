@@ -2,6 +2,9 @@ import React, { useEffect, useState, useRef } from "react";
 import ProductList from "./ProductList";
 import "./ProductList.css"
 
+//Author: Melanie
+//Purpose: to render the search bar and all the products on the home page.
+
 const Home = props => {
     const [products, setProducts] = useState([])
     const searchBar = useRef()
@@ -21,7 +24,7 @@ const Home = props => {
 
     const filterByLocation = (location) => {
     fetch(`http://localhost:8000/products?location=${location}`, {
-        method: "Get",
+        method: "GET",
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
@@ -31,15 +34,16 @@ const Home = props => {
       .then(response => response.json())
       .then(setProducts)
     }
-    useEffect(getProducts, [])
-    useEffect(() => filterByLocation, [])
-
+    useEffect(() => {
+        getProducts()
+        filterByLocation() }, [])
+        
     const SearchSubmitButton = event => {
         event.preventDefault()
         console.log("the button submitted")
-        filterByLocation(searchBar.current.value)
+        filterByLocation(searchBar.current.value.toLowerCase())
     }
-
+    
     return (
         <>
         <main className="explorer">
