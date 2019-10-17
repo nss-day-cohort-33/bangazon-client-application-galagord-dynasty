@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Cart = props => {
   const [open_order, setOrder] = useState([]);
 
   const getOpenOrder = () => {
-    fetch(`http://localhost:8000/orders`, {
+    fetch(`http://localhost:8000/orders?payment=none`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -78,7 +79,15 @@ const Cart = props => {
             });
           })}
         </div>
-        <button>Add Payment to complete order</button>
+        <Link className="nav-link" to="/orderform">
+          {open_order.length > 0 ? (
+            <button className="btn btn-primary">Complete Order >></button>
+          ) : (
+            <div class="alert alert-warning" role="alert" style={{textAlign: "center"}}>
+              You currently have no open order!
+            </div>
+          )}
+        </Link>
       </main>
     </>
   );
