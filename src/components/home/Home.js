@@ -34,6 +34,7 @@ const Home = props => {
       .then(response => response.json())
       .then(setProducts)
     }
+    
     useEffect(() => {
         getProducts()
         filterByLocation() }, [])
