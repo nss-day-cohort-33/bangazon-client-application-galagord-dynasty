@@ -3,6 +3,10 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
 
+// Author: Adam Knowles
+// Purpose: Show all products and related information that a user has shown for sale
+// Methods: GET, DELETE
+
 
 
 
@@ -48,6 +52,11 @@ const MyProductsList = props => {
           to={`/productDetail/${product.id
           }`}
           ><li>{product.name} </li></Link>
+          <ul>
+          <li>Current Inventory: {(product.quantity)-(product.total_sold)}</li>
+          <li>Number Sold: {product.total_sold}</li>
+          </ul>
+          <br />
           
         <button onClick={() => {deleteMyProducts(product.id)}}>Delete</button></>
         })}
