@@ -22,39 +22,25 @@ const ApplicationViews = () => {
     return (
         <React.Fragment>
 
-            {<Route
-                exact path="/" render={props => {
-                    return (
-                        <>
-                            <h2>Products</h2>
-                            <Home {...props}/>
-                        </>
-                    )
-                }}
-            /> }
-            {<Route
-                exact path="/myproducts" render={props => {
-                    return (
-                        <>
-                            
-                            <MyProducts {...props}/>
-                        </>
-                    )
-                }}
-            /> }
-
-            {isAuthenticated() ? (
-            <Route
-                path="/sell_product" render={props => {
-                    return <ProductForm {...props} />
-                }}
-            />
-            ) : null}
-            <Route
-                path="/register" render={props => {
-                    return <Register {...props} />
-                }}
-            />
+          {<Route
+              exact path="/" render={props => {
+                  return (
+                      <>
+                        <h2>Products</h2>
+                        <Home {...props}/>
+                      </>
+                  )
+              }}
+          /> }
+          {<Route
+              exact path="/myproducts" render={props => {
+                  return (
+                    <>
+                    <MyProducts {...props}/>
+                    </>
+                  )
+              }}
+          /> }
 
       {isAuthenticated() ? (
         <Route
