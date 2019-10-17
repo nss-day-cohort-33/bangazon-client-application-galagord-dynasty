@@ -6,9 +6,7 @@ const OrderForm = props => {
 
   const [paymentList, setPaymentList] = useState([]);
 
-
   const payment_id = useRef();
-
 
   const getOpenOrder = () => {
     fetch(`http://localhost:8000/orders?payment=none`, {
@@ -22,7 +20,6 @@ const OrderForm = props => {
       .then(response => response.json())
       .then(order => {
         setOrder(order);
-        setOrderId(order[0].id)
       });
   };
 
@@ -32,8 +29,8 @@ const OrderForm = props => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": `Token ${localStorage.getItem("bangazon_token")}`
+        Accept: "application/json",
+        Authorization: `Token ${localStorage.getItem("bangazon_token")}`
       }
     })
       .then(response => response.json())
@@ -42,7 +39,7 @@ const OrderForm = props => {
       });
   };
 
-  const completeOrder = (id,newdata) => {
+  const completeOrder = (id, newdata) => {
     fetch(`http://localhost:8000/orders/${id}`, {
       method: "PUT",
       headers: {
@@ -51,12 +48,16 @@ const OrderForm = props => {
         Authorization: `Token ${localStorage.getItem("bangazon_token")}`
       },
       body: JSON.stringify(newdata)
+    }).then(() => {
+      props.history.push({
+        pathname: "/MyCart"
+      });
     });
   };
 
   useEffect(() => {
-      getOpenOrder()
-      getPayments()
+    getOpenOrder();
+    getPayments();
   }, []);
 
   console.log("orderId", orderId);
@@ -97,12 +98,20 @@ const OrderForm = props => {
             <select ref={payment_id}>
               <option value="">Select Category</option>
               {paymentList.map(payment => {
-                return <option value={payment.id}>{payment.merchant_name}</option>;
+                return (
+                  <option value={payment.id}>{payment.merchant_name}</option>
+                );
               })}
             </select>
           </fieldset>
           <fieldset>
-            <button onClick={() => completeOrder(orderId,{payment_id: payment_id.current.value})} className="btn btn-primary" style={{ margin: "1em 2em 0 2em" }}>
+            <button
+              onClick={() =>
+                completeOrder(open_order[0].id, { payment_id: payment_id.current.value })
+              }
+              className="btn btn-primary"
+              style={{ margin: "1em 2em 0 2em" }}
+            >
               Submit Order
             </button>
           </fieldset>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-
 const Cart = props => {
   const [open_order, setOrder] = useState([]);
 
@@ -81,7 +80,13 @@ const Cart = props => {
           })}
         </div>
         <Link className="nav-link" to="/orderform">
-        {open_order.length === null ? <button className="btn btn-primary">Complete Order >></button> : null}
+          {open_order.length > 0 ? (
+            <button className="btn btn-primary">Complete Order >></button>
+          ) : (
+            <div class="alert alert-warning" role="alert" style={{textAlign: "center"}}>
+              You currently have no open order!
+            </div>
+          )}
         </Link>
       </main>
     </>
