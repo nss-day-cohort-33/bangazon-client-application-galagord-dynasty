@@ -175,7 +175,7 @@ const ProductForm = props => {
               type="text"
               name="location"
               className="form-control"
-              placeholder="City, State"
+              placeholder="City"
               required
             />
           </fieldset>

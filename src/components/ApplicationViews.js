@@ -1,52 +1,46 @@
-import { Route } from "react-router-dom";
-import React from "react";
-import { withRouter } from "react-router-dom";
-import Register from "./auth/Register";
-import Login from "./auth/Login";
-import ProductDetail from "./product/ProductDetail";
-import ProductForm from "./product/ProductForm";
-import CategoryList from "./category/CategoryList";
-import ProductList from "./home/ProductList";
-import CurrentOrder from "./order/CurrentOrder";
-import CategoryDetail from "./category/CategoryDetail";
-import MyProducts from "./product/MyProducts";
-import CustomerProfile from "./payment/CustomerProfile";
-import PaymentForm from "./payment/PaymentForm";
-import PaymentOptions from "./payment/PaymentOptions";
-import useSimpleAuth from "../hooks/ui/useSimpleAuth";
-import OrderForm from "./order/CompleteOrderForm";
+import { Route } from "react-router-dom"
+import React from "react"
+import { withRouter } from "react-router-dom"
+import Register from "./auth/Register"
+import Login from "./auth/Login"
+import ProductDetail from "./product/ProductDetail"
+import ProductForm from "./product/ProductForm"
+import CategoryList from "./category/CategoryList"
+import Home from "./home/Home"
+import OrderForm from "./order/CompleteOrderForm"
+import CurrentOrder from "./order/CurrentOrder"
+import CategoryDetail from "./category/CategoryDetail"
+import MyProducts from "./product/MyProducts"
+import CustomerProfile from "./payment/CustomerProfile"
+import PaymentForm from "./payment/PaymentForm"
+import PaymentOptions from "./payment/PaymentOptions"
+import useSimpleAuth from "../hooks/ui/useSimpleAuth"
+
 
 const ApplicationViews = () => {
-  const { isAuthenticated } = useSimpleAuth();
-  return (
-    <React.Fragment>
-      {
-        <Route
-          exact
-          path="/"
-          render={props => {
-            return (
-              <>
-                <h2>Products</h2>
-                <ProductList {...props} />
-              </>
-            );
-          }}
-        />
-      }
-      {
-        <Route
-          exact
-          path="/myproducts"
-          render={props => {
-            return (
-              <>
-                <MyProducts {...props} />
-              </>
-            );
-          }}
-        />
-      }
+    const { isAuthenticated } = useSimpleAuth();
+    return (
+        <React.Fragment>
+
+          {<Route
+              exact path="/" render={props => {
+                  return (
+                      <>
+                        <h2>Products</h2>
+                        <Home {...props}/>
+                      </>
+                  )
+              }}
+          /> }
+          {<Route
+              exact path="/myproducts" render={props => {
+                  return (
+                    <>
+                    <MyProducts {...props}/>
+                    </>
+                  )
+              }}
+          /> }
 
       {isAuthenticated() ? (
         <Route
