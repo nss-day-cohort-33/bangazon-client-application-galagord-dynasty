@@ -1,11 +1,10 @@
-//Author: Misty M. DeRamus
+//Author: Adam Knowels and Melanie Bond
 //Purpose: Allow a user to get all the Bangazon products from the database.
 //Methods: GET
 
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./ProductList.css";
-import { reverse } from "dns";
 
 // a function to give you all your products. The products variable is the state and
 // use setProducts to change the state of products the variable
@@ -18,28 +17,22 @@ const ProductList = props => {
   return (
     <>
       <main
-        className="products"
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-around"
-        }}
-      >
-          {props.products.slice(-20).map(product => {
+        className="products">
+          {props.products.map(product => {
             return (
               <div>
-                <div class="card" style={{ margin: "2em", width: "22rem" }}>
-                  <div class="card-body">
-                    <h2 class="card-title">
-                      <Link to={`/productDetail/${product.id}`}>
+                <div className="card">
+                  <div className="card-body">
+                    <h3 className="card-title">
+                      <Link className="text-info" to={`/productDetail/${product.id}`}>
                         <strong>{product.name}</strong>
                       </Link>
-                    </h2>
-                      <div class="card-text">
+                    </h3>
+                      <div className="card-text">
                         <strong>Price:</strong> ${product.price}
                       </div>
                       <br/>
-                    <p class="card-text">{product.description}</p>
+                    <p className="card-text">{product.description}</p>
                   </div>
                 </div>
               </div>

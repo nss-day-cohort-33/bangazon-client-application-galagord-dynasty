@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import useModal from "../../hooks/ui/useModal";
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth";
+import "./Product.css"
 
 
 const ProductForm = props => {
@@ -95,16 +96,18 @@ const ProductForm = props => {
       {/* Dialog Box */}
       <dialog id="category_alert" className="category_alert">
         <br />
-        <div style={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
+        <div 
+        // style={{display: "flex", flexDirection: "column", justifyContent: "center"}}
+        >
         <p>Please Select a Category for the Product.</p>
         <button onClick={() => toggleDialog(false)}>Ok</button>
         </div>
         <button
-          style={{
-            position: "absolute",
-            top: "0.25em",
-            right: "0.25em"
-          }}
+          // style={{
+          //   position: "absolute",
+          //   top: "0.25em",
+          //   right: "0.25em"
+          // }}
           id="closeBtn"
           onClick={() => toggleDialog(false)}
         >
@@ -135,15 +138,6 @@ const ProductForm = props => {
               ref={description}
               placeholder="Product Description"
             ></textarea>
-            {/* <input
-              ref={firstName}
-              type="text"
-              name="firstName"
-              className="form-control"
-              placeholder="First name"
-              required
-              autoFocus
-            /> */}
           </fieldset>
           <fieldset>
             <label htmlFor="quantity"> Quantity </label>

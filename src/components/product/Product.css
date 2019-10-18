@@ -1,0 +1,11 @@
+div {
+    display: "flex";
+    flex-direction: "column";
+    justify-content: "center"
+}
+
+button {
+    position: "absolute";
+    top: "0.25em";
+    right: "0.25em"
+}
