@@ -40,7 +40,7 @@ const ProductForm = props => {
 
   const getCategories = () => {
     // Fetch the data from localhost:8000/categories
-    fetch("http://localhost:8000/categories", {
+    fetch("http://localhost:8000/categories?limit=20", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
