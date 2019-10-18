@@ -1,0 +1,27 @@
+.cart__header {
+    padding: 1em 0 0 1em;
+    font-size: 3em;
+}
+
+.cart__items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.cart__lineitem {
+    flex-basis: 28%;
+    margin: 0.5em;
+    flex-grow: 1;
+}
+
+.btn--delete {
+    background-color: white;
+    color: black;
+    border: 2px solid rgb(241, 46, 25);
+}
+
+.btn--delete:hover {
+    background-color: rgba(207, 39, 20, 0.932);
+    color: white;
+}
