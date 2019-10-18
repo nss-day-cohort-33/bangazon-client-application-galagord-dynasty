@@ -12,7 +12,7 @@ const CategoryList = props => {
 
   const getCategories = () => {
     // Fetch the data from localhost:8000/categories
-    fetch("http://localhost:8000/categories", {
+    fetch("http://localhost:8000/categories?limit=true", {
       method: "GET",
       headers: {
         "Accept": "application/json",
@@ -56,7 +56,7 @@ const CategoryList = props => {
               )
             }).length})</h3>
             {/* Only shows the first three products in each category */}
-            {item.products.slice(0, 3).map(item => {
+            {item.products.map(item => {
               let itemId = +item.url.split("s/")[1]
               return (
                 <div>
