@@ -29,7 +29,13 @@ const ProductForm = props => {
     };
     if (category_id.current.value === "") {
       toggleDialog(true);
-    } else {
+    }
+
+    if (price.current.value > 10000){
+      alert("Price can not be more than $10,000")
+    }
+
+     else {
       createProduct(newProduct).then(() => {
         props.history.push({
           pathname: "/"
