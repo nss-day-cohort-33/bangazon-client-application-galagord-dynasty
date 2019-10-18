@@ -2,8 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import useModal from "../../hooks/ui/useModal";
 
 const OrderForm = props => {
-  const [open_order, setOrder] = useState([]);
-  const [orderId, setOrderId] = useState("");
+  const [order, setOrder] = useState({products:[]})
   const { toggleDialog, modalIsOpen } = useModal("#payment_alert");
 
   const [paymentList, setPaymentList] = useState([]);
@@ -11,7 +10,7 @@ const OrderForm = props => {
   const payment_id = useRef();
 
   const getOpenOrder = () => {
-    fetch(`http://localhost:8000/orders?payment=none`, {
+    fetch(`http://localhost:8000/orders/cart`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -73,7 +72,6 @@ const OrderForm = props => {
     return () => window.removeEventListener("keyup", handler);
   }, []);
 
-  console.log("orderId", orderId);
 
   return (
     <>
@@ -87,8 +85,7 @@ const OrderForm = props => {
             </div>
             <ul>
               <div className="card-text">
-                {open_order.map(item => {
-                  return item.line_items.map(item => {
+                {order.products.map(item => {
                     return (
                       <div
                         style={{
@@ -100,7 +97,6 @@ const OrderForm = props => {
                         <div>...............${item.price}</div>
                       </div>
                     );
-                  });
                 })}
               </div>
             </ul>
@@ -123,7 +119,7 @@ const OrderForm = props => {
               onClick={() =>
                 payment_id.current.value === ""
                   ? toggleDialog(true)
-                  : completeOrder(open_order[0].id, {
+                  : completeOrder(order.id, {
                       payment_id: payment_id.current.value
                     })
               }
