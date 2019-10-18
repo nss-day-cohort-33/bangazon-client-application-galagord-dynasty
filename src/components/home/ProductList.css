@@ -17,6 +17,11 @@ h2 {
     flex-wrap: wrap;
 }
 
+button {
+    margin: 10px;
+    padding: 10px
+}
+
 .search-by-location {
     margin: 5px;
     display: flex;

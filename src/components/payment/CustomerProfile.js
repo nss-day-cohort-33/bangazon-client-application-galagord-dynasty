@@ -37,28 +37,30 @@ const CustomerProfile = () => {
   return (
     <>
       <main>
-        <div>
-          <h4>
+        <div className="card">
+          <div className="card-body">
+          <h4 className="card-title">
             {"Name: "}
             {customer.user.first_name} {customer.user.last_name}
           </h4>
-          <h4>
+          <h4 className="card-text">
             {"Address: "}
             {customer.address}
           </h4>
-          <h4>
+          <h4 className="card-text">
             {"Phone Number: "}
             {customer.phone_number}
           </h4>
-        </div>
         <section className="product">
-          <Link className="nav-link" to={`./PaymentForm`}>
+          <Link className="nav-link text-info" to={`./PaymentForm`}>
             <h5>Add New Payment</h5>
           </Link>
-          <Link className="nav-link" to={`./PaymentList`}>
+          <Link className="nav-link text-info" to={`./PaymentList`}>
             <h5>Payment Options</h5>
           </Link>
         </section>
+          </div>
+        </div>
       </main>
     </>
   );

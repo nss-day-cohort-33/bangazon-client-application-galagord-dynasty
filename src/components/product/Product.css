@@ -1,11 +1,39 @@
-div {
-    display: "flex";
-    flex-direction: "column";
-    justify-content: "center"
-}
-
 button {
     position: "absolute";
     top: "0.25em";
     right: "0.25em"
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around
+  }
+
+h2 {
+    margin: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.div {
+    margin: 5px;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.product-name {
+    margin: 10px;
+    padding-left: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
