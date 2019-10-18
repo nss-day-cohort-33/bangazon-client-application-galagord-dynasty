@@ -10,7 +10,7 @@ const Home = props => {
     const searchBar = useRef()
 
     const getProducts = () => {
-    fetch(`http://localhost:8000/products`, {
+    fetch(`http://localhost:8000/products?limit=20`, {
         method: "GET",
         headers: {
             "Accept": "application/json",
@@ -48,17 +48,16 @@ const Home = props => {
     return (
         <>
         <main className="explorer">
-            <label name="location-of-product">Filter all products by location:</label>
-            <br></br>
-            <form onSubmit={SearchSubmitButton}>
-                <input placeholder="Type in a city name..."
+        <h2><strong>Products</strong></h2>
+            <div className="search-by-location">Search for Products by City:</div>
+            <form className="search-by-location" onSubmit={SearchSubmitButton}>
+                <input placeholder=""
                 autofocus
-                name="location-of-product"
                 defaultValue=""
                 ref={searchBar}
                 type="text">
                 </input>
-                <button type="submit">Submit</button>
+                {/* <button className="search-by-location" type="submit">submit</button> */}
             </form>
             <h5><ProductList {...props} products={products} /></h5>
         </main>

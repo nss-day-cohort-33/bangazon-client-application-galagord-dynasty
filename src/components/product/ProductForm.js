@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import useModal from "../../hooks/ui/useModal";
 import useSimpleAuth from "../../hooks/ui/useSimpleAuth";
-
+import "./Product.css"
 
 const ProductForm = props => {
   const name = useRef();
@@ -29,7 +29,13 @@ const ProductForm = props => {
     };
     if (category_id.current.value === "") {
       toggleDialog(true);
-    } else {
+    }
+
+    if (price.current.value > 10000){
+      alert("Price can not be more than $10,000")
+    }
+
+     else {
       createProduct(newProduct).then(() => {
         props.history.push({
           pathname: "/"
@@ -40,7 +46,7 @@ const ProductForm = props => {
 
   const getCategories = () => {
     // Fetch the data from localhost:8000/categories
-    fetch("http://localhost:8000/categories", {
+    fetch("http://localhost:8000/categories?limit=false", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -94,16 +100,11 @@ const ProductForm = props => {
       {/* Dialog Box */}
       <dialog id="category_alert" className="category_alert">
         <br />
-        <div style={{display: "flex", flexDirection: "column", justifyContent: "center"}}>
+        <div >
         <p>Please Select a Category for the Product.</p>
         <button onClick={() => toggleDialog(false)}>Ok</button>
         </div>
         <button
-          style={{
-            position: "absolute",
-            top: "0.25em",
-            right: "0.25em"
-          }}
           id="closeBtn"
           onClick={() => toggleDialog(false)}
         >
@@ -114,9 +115,11 @@ const ProductForm = props => {
       <main style={{ textAlign: "center" }}>
         {/* { !isAuthenticated() ? <div class="alert alert-warning" role="alert">You are not logged in. Please Login to add to a Product.</div> : */}
         <form className="form--login" onSubmit={handleCreate}>
-          <h1 className="h3 mb-3 font-weight-normal">Create a New Product</h1>
+          <div className="card">
+            <div className="card-body">
+          <h1 className="card-title h3 mb-3 font-weight-normal">Create a New Product</h1>
           <fieldset>
-            <label htmlFor="name"> Product Name </label>
+            <label className="card-text" htmlFor="name"> Product Name </label>
             <input
               ref={name}
               type="text"
@@ -128,24 +131,15 @@ const ProductForm = props => {
             />
           </fieldset>
           <fieldset>
-            <label htmlFor="description"> Description </label>
+            <label className="card-text" htmlFor="description"> Description </label>
             <br />
             <textarea
               ref={description}
               placeholder="Product Description"
             ></textarea>
-            {/* <input
-              ref={firstName}
-              type="text"
-              name="firstName"
-              className="form-control"
-              placeholder="First name"
-              required
-              autoFocus
-            /> */}
           </fieldset>
           <fieldset>
-            <label htmlFor="quantity"> Quantity </label>
+            <label className="card-text" htmlFor="quantity"> Quantity </label>
             <input
               ref={quantity}
               type="number"
@@ -156,7 +150,7 @@ const ProductForm = props => {
             />
           </fieldset>
           <fieldset>
-            <label htmlFor="price"> Price </label>
+            <label className="card-text" htmlFor="price"> Price </label>
             <input
               ref={price}
               type="number"
@@ -168,7 +162,7 @@ const ProductForm = props => {
             />
           </fieldset>
           <fieldset>
-            <label htmlFor="location"> Location </label>
+            <label className="card-text" htmlFor="location"> Location </label>
             <input
               ref={location}
               type="text"
@@ -179,7 +173,7 @@ const ProductForm = props => {
             />
           </fieldset>
           <fieldset>
-            <label htmlFor="category"> Category: </label>
+            <label className="card-text" htmlFor="category"> Category: </label>
             <select ref={category_id}>
               <option value="">Select Category</option>
               {categoryList.map(category => {
@@ -188,8 +182,10 @@ const ProductForm = props => {
             </select>
           </fieldset>
           <fieldset>
-            <button type="submit">Submit</button>
+            <button type="submit">submit</button>
           </fieldset>
+          </div>
+          </div>
         </form>
       </main>
     </>
