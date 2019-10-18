@@ -26,7 +26,6 @@ const ApplicationViews = () => {
               exact path="/" render={props => {
                   return (
                       <>
-                        <h2>Products</h2>
                         <Home {...props}/>
                       </>
                   )
