@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
+import "./Cart.css"
 
 const Cart = props => {
-  const [open_order, setOrder] = useState([]);
+  const [order, setOrder] = useState({products:[]})
 
   const getOpenOrder = () => {
-    fetch(`http://localhost:8000/orders?payment=none`, {
+    fetch(`http://localhost:8000/cart`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -14,50 +15,46 @@ const Cart = props => {
       }
     })
       .then(response => response.json())
-      .then(order => {
-        console.log("order", order);
-        setOrder(order);
-      });
-  };
+      .then(setOrder)
+  }
 
   const removeProductFromOrder = id => {
-    fetch(`http://localhost:8000/orderproducts/${id}`, {
+    fetch(`http://localhost:8000/cart/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
         Authorization: `Token ${localStorage.getItem("bangazon_token")}`
       }
-    }).then(() => getOpenOrder);
-  };
+    }).then(getOpenOrder)
+  }
 
-  useEffect(getOpenOrder, []);
+  useEffect(() => {
+    getOpenOrder()
+  }, [])
 
   return (
     <>
-      <main className="order-items">
-        <h2>My Cart</h2>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-around"
-          }}
-        >
-          {open_order.map(item => {
-            return item.line_items.map(item => {
+      <main className="cart">
+
+        <header>
+            <h2 className="cart__header">Your Current Order</h2>
+        </header>
+
+        <article className="cart__items">
+          {order.products.map(item => {
               return (
-                <div>
-                  <div class="card" style={{ margin: "2em", width: "22rem" }}>
-                    <div class="card-body">
-                      <h2 class="card-title">
+                <section key={item.id} className="cart__lineitem">
+                  <div className="card" style={{ margin: "2em", width: "22rem" }}>
+                    <div className="card-body">
+                      <h2 className="card-title">
                         <strong>{item.name}</strong>
                       </h2>
-                      <div class="card-text">
+                      <div className="card-text">
                         <strong>Price:</strong> ${item.price}
                       </div>
                       <br />
-                      <p class="card-text">{item.description}</p>
+                      <p className="card-text">{item.description}</p>
                       <div
                         style={{
                           margin: "1em .5em 0 .5em",
@@ -66,31 +63,30 @@ const Cart = props => {
                         }}
                       >
                         <button
-                          class="btn btn-danger"
-                          onClick={() => removeProductFromOrder()}
+                          className="btn btn--delete"
+                          onClick={() => removeProductFromOrder(item.id)}
                         >
                           Remove
                         </button>
                       </div>
                     </div>
                   </div>
-                </div>
-              );
-            });
+                </section>
+              )
           })}
-        </div>
+        </article>
         <Link className="nav-link" to="/orderform">
-          {open_order.length > 0 ? (
+          {order.products.length > 0 ? (
             <button className="btn btn-primary">Complete Order >></button>
           ) : (
-            <div class="alert alert-warning" role="alert" style={{textAlign: "center"}}>
+            <div className="alert alert-warning" role="alert" style={{textAlign: "center"}}>
               You currently have no open order!
             </div>
           )}
         </Link>
       </main>
     </>
-  );
-};
+  )
+}
 
-export default Cart;
+export default Cart

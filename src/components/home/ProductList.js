@@ -17,18 +17,11 @@ const ProductList = props => {
 
   return (
     <>
-      <main
-        className="products"
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-around"
-        }}
-      >
-          {props.products.slice(-20).map(product => {
+      <main className="products" >
+          {props.products.map(product => {
             return (
-              <div>
-                <div class="card" style={{ margin: "2em", width: "22rem" }}>
+              <div className="product">
+                <div class="card">
                   <div class="card-body">
                     <h2 class="card-title">
                       <Link to={`/productDetail/${product.id}`}>
