@@ -8,7 +8,7 @@ import ProductDetail from "../product/ProductDetail";
 
 const CategoryDetail = props => {
     const [category, setCategory] = useState([])
-    const [categoryList, setCategoryList] = useState([]);
+    const [categoryList, setCategoryList] = useState([{ product: {} }]);
 
 const getCategory = (categoryDetailId) => {
     fetch(`http://localhost:8000/categories/${categoryDetailId}`, {
@@ -30,7 +30,7 @@ const getCategory = (categoryDetailId) => {
 
 const getCategories = () => {
     // Fetch the data from localhost:8000/categories
-    fetch("http://localhost:8000/categories", {
+    fetch("http://localhost:8000/categories?limit=true", {
       method: "GET",
       headers: {
         "Accept": "application/json",
