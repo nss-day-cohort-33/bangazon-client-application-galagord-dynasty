@@ -57,7 +57,7 @@ const Home = props => {
                 ref={searchBar}
                 type="text">
                 </input>
-                {/* <button className="search-by-location" type="submit">submit</button> */}
+                
             </form>
             <h5><ProductList {...props} products={products} /></h5>
         </main>
