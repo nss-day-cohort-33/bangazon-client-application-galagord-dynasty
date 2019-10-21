@@ -29,10 +29,10 @@ const CustomerProfile = () => {
         });
   };
 
-  //Create useEffect()
+  
   useEffect(getCustomer, []);
 
-  //Create HTML representation with JSX
+  
 
   return (
     <>
